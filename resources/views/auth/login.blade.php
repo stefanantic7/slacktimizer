@@ -1,36 +1,41 @@
 @extends('layouts.app')
 @section('content')
-    <div>Login</div>
-    <form role="form" method="POST" action="{{ url('/login') }}">
-        {{ csrf_field() }}
-        <div {{ $errors->has('email') ? ' has-error' : '' }}>
+<div class="container">
+
+    <div class="wrapper">
+        <h1>Login</h1><br/>
+        <form role="form" method="POST" action="{{ url('/login') }}">
+            {{ csrf_field() }}
+
             <label for="email">E-Mail Address</label>
 
-            <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" autofocus>
-
+            <input id="email" type="email" name="email" value="{{ old('email') }}" autofocus>
+            <br/>
             @if ($errors->has('email'))
                 <span><strong>{{ $errors->first('email') }}</strong></span>
-            @endif
-        </div>
+            @endif<br/>
 
-        <div {{ $errors->has('password') ? ' has-error' : '' }}>
+
             <label for="password">Password</label>
 
-            <div>
-                <input id="password" type="password" class="form-control" name="password">
 
+                <input id="password" type="password" name="password">
+                <br/>
                 @if ($errors->has('password'))
-                    <span class="help-block"><strong>{{ $errors->first('password') }}</strong></span>
-                @endif
-            </div>
-        </div>
+                    <span><strong>{{ $errors->first('password') }}</strong></span>
+                @endif<br/>
 
-        <label>
-            <input type="checkbox" name="remember"> Remember Me
-        </label>
 
-        <button type="submit">Login</button>
 
-        <a href="{{ url('/password/reset') }}">Forgot Your Password?</a>
-    </form>
+
+            <input type="checkbox" name="remember"> Remember Me <br/><br/>
+
+
+            <button type="submit">Login</button>
+
+            <a href="{{ url('/password/reset') }}">Forgot Your Password?</a><br/><br/>
+            <a href="/register">Register</a>
+        </form>
+    </div>
+</div>
 @endsection

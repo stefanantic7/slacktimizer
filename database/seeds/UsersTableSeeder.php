@@ -14,7 +14,7 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->delete();
 
         $users = array(
-            ['name' => 'Milos Milosevic', 'email' => 'milos.milosevic@labs.devana.rs', 'password' => bcrypt('12345678')]
+            ['slack_id' => null, 'name' => 'Milos Milosevic', 'email' => 'milos.milosevic@labs.devana.rs', 'password' => bcrypt('12345678')]
         );
 
         DB::table('users')->insert($users);

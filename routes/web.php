@@ -14,4 +14,5 @@
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index')->middleware('auth');
+

@@ -1,6 +1,6 @@
 .container {
   text-align: center; }
-  .container div {
+  .container .wrapper {
     display: inline-block;
     text-align: left; }
 

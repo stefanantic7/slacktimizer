@@ -1,2 +1,10 @@
+.container {
+  text-align: center; }
+  .container .wrapper {
+    display: inline-block;
+    text-align: left; }
+
+.info {
+  float: right; }
 
 /*# sourceMappingURL=app.css.map */

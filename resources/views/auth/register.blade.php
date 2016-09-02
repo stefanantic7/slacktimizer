@@ -1,53 +1,52 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="container">
 
-<div>Register</div>
-
-<form role="form" method="POST" action="{{ url('/register') }}">
-    {{ csrf_field() }}
-    <label for="name" >Name</label>
-    <input id="name" type="text" name="name" value="{{ old('name') }}" autofocus>
-
-    @if ($errors->has('name'))
-    <span>
-        <strong>{{ $errors->first('name') }}</strong>
-    </span>
-    @endif
-
-
-
-    <label for="email">E-Mail Address</label>
-    <input id="email" type="email" name="email" value="{{ old('email') }}">
-
-    @if ($errors->has('email'))
-    <span>
-        <strong>{{ $errors->first('email') }}</strong>
-    </span>
-    @endif
+    <div class="wrapper">
+        <h1>Register</h1><br/>
+        <form role="form" method="POST" action="{{ url('/register') }}">
+            {{ csrf_field() }}
+            <label for="name" >Name</label>
+            <input id="name" type="text" name="name" value="{{ old('name') }}" autofocus><br/>
+            @if ($errors->has('name'))
+            <span>
+                <strong>{{ $errors->first('name') }}</strong>
+            </span>
+            @endif<br/>
 
 
-    <label for="password">Password</label>
-    <input id="password" type="password" name="password">
 
-    @if ($errors->has('password'))
-    <span>
-        <strong>{{ $errors->first('password') }}</strong>
-    </span>
-    @endif
+            <label for="email">E-Mail Address</label>
+            <input id="email" type="email" name="email" value="{{ old('email') }}"><br/>
+            @if ($errors->has('email'))
+            <span>
+                <strong>{{ $errors->first('email') }}</strong>
+            </span>
+            @endif<br/>
 
 
-    <label for="password-confirm">Confirm Password</label>
-    <input id="password-confirm" type="password" name="password_confirmation">
+            <label for="password">Password</label>
+            <input id="password" type="password" name="password"><br/>
+            @if ($errors->has('password'))
+            <span>
+                <strong>{{ $errors->first('password') }}</strong>
+            </span>
+            @endif<br/>
 
-    @if ($errors->has('password_confirmation'))
-    <span>
-        <strong>{{ $errors->first('password_confirmation') }}</strong>
-    </span>
-    @endif
 
-    <button type="submit">Register</button>
+            <label for="password-confirm">Confirm Password</label>
+            <input id="password-confirm" type="password" name="password_confirmation"><br/>
+            @if ($errors->has('password_confirmation'))
+            <span>
+                <strong>{{ $errors->first('password_confirmation') }}</strong>
+            </span>
+            @endif<br/>
 
-</form>
+            <button type="submit">Register</button>
+
+        </form>
+    </div>
+</div>
 
 @endsection

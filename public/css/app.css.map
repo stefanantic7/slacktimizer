@@ -1,1 +1,1 @@
-{"version":3,"sources":["app.css"],"names":[],"mappings":"AAAA","file":"app.css","sourceRoot":"/source/","sourcesContent":[]}
+{"version":3,"sources":["_loginRegister.scss","app.scss"],"names":[],"mappings":"AAAA;EACE,mBAAmB,EAQpB;EATD;IAKI,sBAAsB;IACtB,iBAAiB,EAElB;;ACLH;EACE,aAAa,EACd","file":"app.css","sourcesContent":[".container{\r\n  text-align: center;\r\n\r\n  .wrapper{\r\n    //position: fixed;\r\n    display: inline-block;\r\n    text-align: left;\r\n\r\n  }\r\n}\r\n","@import \"loginRegister\";\r\n\r\n\r\n.info{\r\n  float: right;\r\n}"],"sourceRoot":"/source/"}

@@ -16,3 +16,5 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->middleware('auth');
 
+Route::get('send', function (){  return view('sendMessage');});
+

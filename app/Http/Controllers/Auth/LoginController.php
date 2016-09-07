@@ -36,7 +36,8 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest', ['except' => 'logout']);
+        $this->middleware('guest')->except('logout', 'redirectToProvider', 'handleProviderCallback');
+        $this->middleware('auth')->only('redirectToProvider', 'handleProviderCallback');
     }
 
     /**
@@ -57,39 +58,12 @@ class LoginController extends Controller
      */
     public function handleProviderCallback(Request $request)
     {
-        $user = Socialite::driver('slack')->user();
+        $slackUser = Socialite::driver('slack')->user();
+        $user = User::find(Auth::user()->id);
 
-        $redirect = $request->input('redirect');
-
-        if($redirect)
-        {
-            return redirect($redirect);
-        }
-
-        $authUser = $this->findOrCreateUser($user);
-
-        Auth::login($authUser, true);
+        $user->remember_token = $slackUser->token;
+        $user->save();
 
         return redirect('/');
-    }
-
-    /**
-     * Return user if exists; create and return if doesn't
-     *
-     * @param $slackUser
-     * @return User
-     */
-    private function findOrCreateUser($slackUser)
-    {
-        if ($authUser = User::where('slack_id', $slackUser->id)->first()) {
-            Auth::login($authUser);
-            return $authUser;
-        }
-
-        return User::create([
-            'slack_id' => $slackUser->id,
-            'name' => $slackUser->name,
-            'email' => $slackUser->email,
-        ]);
     }
 }

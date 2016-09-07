@@ -22,3 +22,5 @@ Route::get('send', 'Messages@send');
 Route::post('send', 'Messages@send');
 
 Route::get('show', 'Messages@show');
+Route::get('/test', 'TestController@index');
+

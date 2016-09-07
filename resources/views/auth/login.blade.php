@@ -9,7 +9,7 @@
 
             <label for="email">E-Mail Address</label>
 
-            <input id="email" type="email" name="email" value="{{ old('email') }}" autofocus>
+            <input class="alignRight" id="email" type="email" name="email" value="{{ old('email') }}" autofocus>
             <br/>
             @if ($errors->has('email'))
                 <span><strong>{{ $errors->first('email') }}</strong></span>
@@ -19,7 +19,7 @@
             <label for="password">Password</label>
 
 
-                <input id="password" type="password" name="password">
+                <input class="alignRight" id="password" type="password" name="password">
                 <br/>
                 @if ($errors->has('password'))
                     <span><strong>{{ $errors->first('password') }}</strong></span>
@@ -33,8 +33,8 @@
 
             <button type="submit">Login</button>
 
-            <a href="{{ url('/password/reset') }}">Forgot Your Password?</a><br/><br/>
-            <a href="/register">Register</a>
+            <a class="alignRight" href="{{ url('/password/reset') }}">Forgot Your Password?</a><br/>
+            <a class="alignRight" href="/register">Register</a>
         </form>
     </div>
 </div>

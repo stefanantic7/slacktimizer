@@ -1,6 +1,27 @@
-@import "loginRegister";
 
+@import "sendForm";
+@import "showMessages";
+body{
+  font-family:  sans-serif;
 
+}
 .info{
   float: right;
+}
+.container{
+  text-align: center;
+
+  .wrapper{
+    margin-top: 1%;
+    display: inline-block;
+    text-align: left;
+    
+    .alignRight{
+      float: right;
+    }
+    input{
+      margin: 0;
+    }
+
+  }
 }

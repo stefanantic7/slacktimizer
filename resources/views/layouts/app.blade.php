@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>Optimize</title>
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
@@ -21,11 +21,14 @@
             Logout
         </a>
 
-        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+        <form id="logout-form" action="{{ url('/logout') }}" method="POST" >
             {{ csrf_field() }}
         </form>
     @endif
-
-    @yield('content')
+    <div class="container">
+        <div class="wrapper">
+            @yield('content')
+        </div>
+    </div>
 </body>
 </html>

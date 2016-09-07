@@ -16,7 +16,9 @@ Auth::routes();
 Route::get('auth/slack', 'Auth\LoginController@redirectToProvider');
 Route::get('auth/slack/callback', 'Auth\LoginController@handleProviderCallback');
 
-Route::get('/', 'HomeController@index')->middleware('auth');
+Route::get('/', 'HomeController@index');
 
-Route::get('send', function (){  return view('sendMessage');});
+Route::get('send', 'Messages@send');
+Route::post('send', 'Messages@send');
 
+Route::get('show', 'Messages@show');

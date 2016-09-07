@@ -8,7 +8,7 @@
         <form role="form" method="POST" action="{{ url('/register') }}">
             {{ csrf_field() }}
             <label for="name" >Name</label>
-            <input id="name" type="text" name="name" value="{{ old('name') }}" autofocus><br/>
+            <input id="name" class="alignRight" type="text" name="name" value="{{ old('name') }}" autofocus><br/>
             @if ($errors->has('name'))
             <span>
                 <strong>{{ $errors->first('name') }}</strong>
@@ -18,7 +18,7 @@
 
 
             <label for="email">E-Mail Address</label>
-            <input id="email" type="email" name="email" value="{{ old('email') }}"><br/>
+            <input id="email" class="alignRight" type="email" name="email" value="{{ old('email') }}"><br/>
             @if ($errors->has('email'))
             <span>
                 <strong>{{ $errors->first('email') }}</strong>
@@ -27,7 +27,7 @@
 
 
             <label for="password">Password</label>
-            <input id="password" type="password" name="password"><br/>
+            <input id="password" class="alignRight" type="password" name="password"><br/>
             @if ($errors->has('password'))
             <span>
                 <strong>{{ $errors->first('password') }}</strong>
@@ -36,7 +36,7 @@
 
 
             <label for="password-confirm">Confirm Password</label>
-            <input id="password-confirm" type="password" name="password_confirmation"><br/>
+            <input id="password-confirm" class="alignRight" type="password" name="password_confirmation"><br/>
             @if ($errors->has('password_confirmation'))
             <span>
                 <strong>{{ $errors->first('password_confirmation') }}</strong>

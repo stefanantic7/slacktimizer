@@ -18,3 +18,4 @@ Route::get('auth/slack/callback', 'Auth\LoginController@handleProviderCallback')
 
 Route::get('/', 'HomeController@index')->middleware('auth');
 
+Route::get('/test', 'TestController@index');

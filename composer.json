@@ -1,7 +1,7 @@
 {
-    "name": "optimizer/slack",
-    "description": "Slack Optimizer.",
-    "keywords": ["slack", "optimize"],
+    "name": "laravel/laravel",
+    "description": "The Laravel Framework.",
+    "keywords": ["framework", "laravel"],
     "license": "MIT",
     "type": "project",
     "require": {
@@ -9,7 +9,8 @@
         "laravel/framework": "5.3.*",
         "socialiteproviders/slack": "^2.0",
         "laravel/socialite": "^2.0",
-        "cleentfaar/slack": "~0.14"
+        "cleentfaar/slack": "~0.14",
+        "laravelcollective/html": "^5.3"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

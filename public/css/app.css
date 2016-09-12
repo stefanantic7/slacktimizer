@@ -2,22 +2,18 @@ textarea {
   resize: none;
   width: 100%; }
 
-.textWrapper {
-  width: 60%;
-  margin-left: 20%;
-  margin-right: 20%;
-  border-top: 1px solid black;
-  padding-top: 0.5%; }
-  .textWrapper .messageInfo {
-    color: grey; }
-
-.reply {
+.w {
   width: 60%;
   margin-left: 20%;
   margin-right: 20%; }
+  .w .textWrapper {
+    border-top: 1px solid black;
+    padding-top: 0.5%; }
+    .w .textWrapper .messageInfo {
+      color: grey; }
 
 body {
-  font-family: sans-serif; }
+  font-family: Tahoma; }
 
 .info {
   float: right; }

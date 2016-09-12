@@ -2,7 +2,8 @@
 @import "sendForm";
 @import "showMessages";
 body{
-  font-family:  sans-serif;
+  font-family:  Tahoma;
+
 
 }
 .info{
@@ -10,7 +11,9 @@ body{
 }
 .container{
   text-align: center;
-
+  //width: 60%;
+  //margin-left: 20%;
+  //margin-right: 20%;
   .wrapper{
     margin-top: 1%;
     display: inline-block;

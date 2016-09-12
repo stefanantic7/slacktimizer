@@ -6,7 +6,6 @@ use CL\Slack\Payload\ChannelsListPayload;
 use CL\Slack\Transport\ApiClient;
 use Auth;
 use App\Http\Requests;
-use Crypt;
 
 class TestController extends Controller
 {
@@ -19,10 +18,9 @@ class TestController extends Controller
 
         $response = $client->send($payload);
 
-        if ($response->isOk()) {
-            dd('Successfully posted message on %s' . dd($response->getChannels()));
-        } else {
-            dd('Failed to post message to Slack: %s' . dd($response->getErrorExplanation()));
-        }
+        if ($response->isOk())
+            dd('Successfully posted message on %s.' . dd($response->getChannels()));
+        else
+            dd('Failed to post message to Slack: %s.' . dd($response->getErrorExplanation()));
     }
 }

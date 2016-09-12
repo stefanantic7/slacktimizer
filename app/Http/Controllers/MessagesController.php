@@ -5,44 +5,31 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Http\Requests\SendPrivateMessageRequest;
+use App\Chat;
 
 class MessagesController extends Controller
 {
     /**
-     * @var ApiClient
+     * Show message form.
      */
-    private $client;
-
-    /**
-     * MessagesController constructor.
-     */
-    public function __construct()
+    public function show()
     {
-        // Set user
-        $this->client = new ApiClient(Auth::user()->remember_token);
+        $channels = Chat::all()->pluck('name', 'chat_id');
+
+        return view('sendMessage', compact('channels'));
     }
 
     /**
-     * @param Request $request
+     * Send message.
+     *
+     * @param SendPrivateMessageRequest $request
+     * @return View
      */
-    public function sendMessage(Request $request)
+    public function send(SendPrivateMessageRequest $request)
     {
-        // TODO: Set payload.
-        // Set plugin payload
-        $payload = new ChatPostMessagePayload();
-        $payload->setChannel('@antic');
-        $payload->setText('Hello from Laravel!');
+        $request->getJson();
 
-        // Get response
-        $response = $this->client->send($payload);
-
-        // TODO: Handle errors.
-        // Check for messages
-        if ($response->isOk()) {
-            dd('Successfully posted message on %s' . $response->getChannelId());
-        } else {
-            dd('Failed to post message to Slack: %s' . $response->getErrorExplanation());
-        }
-
+        return redirect('direct');
     }
 }

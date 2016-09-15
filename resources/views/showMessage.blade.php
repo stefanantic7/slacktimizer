@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('content')
 
-
     @foreach($json["messages"] as $message)
         <div class="textWrapper">
             <span class="messageInfo">{{$message['ts']}} Sent by: {{$message['user']}}</span>

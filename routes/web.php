@@ -20,15 +20,13 @@ Route::get('auth/slack/callback', 'Auth\LoginController@handleProviderCallback')
 Route::get('/', 'HomeController@index');
 
 // Channels routes
-Route::get('/channels/get', 'ChannelsController@getChannels');
+Route::get('/channels/get', 'ChannelController@getChannels');
 
 // Messages routes
-Route::get('/direct', 'MessagesController@show');
-Route::post('/direct/send', 'MessagesController@send');
+Route::get('/direct', 'MessageController@index');
+Route::get('/direct/send', 'MessageController@show');
+Route::post('/direct/send', 'MessageController@send');
+Route::get('/direct/ims', 'MessageController@getIms');
 
-Route::get('send', 'Messages@send');
-Route::post('send', 'Messages@send');
-
-Route::get('show', 'Messages@show');
 Route::get('/test', 'TestController@index');
 

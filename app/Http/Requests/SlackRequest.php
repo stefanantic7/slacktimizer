@@ -41,12 +41,29 @@ abstract class SlackRequest extends Request
         return true;
     }
 
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+        return [];
+    }
+
+    /**
+     * Send response back.
+     *
+     * @param Response $response
+     * @param string $ok
+     * @param string $error
+     * @return object
+     */
     protected function sendResponse($response, $ok, $error)
     {
-        if ($response->isOk()) {
-//            dd('Successfully posted message on %s' . $ok);
-        } else {
+        if ($response->isOk())
+            return $ok;
+        else
             dd('Failed to post message to Slack: %s' . $error);
-        }
     }
 }

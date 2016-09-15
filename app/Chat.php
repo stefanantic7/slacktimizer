@@ -23,6 +23,6 @@ class Chat extends Model
      *
      * @var array
      */
-    protected $fillable = ['user_id', 'type_id', 'chat_id', 'name'];
+    protected $fillable = ['user_id', 'slack_user_id', 'type_id', 'chat_id', 'username', 'name'];
 
 }

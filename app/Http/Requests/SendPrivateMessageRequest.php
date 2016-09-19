@@ -32,8 +32,8 @@ class SendPrivateMessageRequest extends SlackRequest
     public function rules()
     {
         return [
-            'send_to' => 'required',
-            'message' => 'required',
+//            'send_to' => 'required',
+//            'message' => 'required',
         ];
     }
 }

@@ -1,13 +1,23 @@
 
 @import "sendForm";
 @import "showMessages";
+@import "sidebar";
+@import "content";
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
 body{
-  font-family:  Tahoma;
+  font-family:  Arial;
 
 
 }
-.info{
-  float: right;
+.logout{
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
 .container{
   text-align: center;
@@ -18,7 +28,7 @@ body{
     margin-top: 1%;
     display: inline-block;
     text-align: left;
-    
+
     .alignRight{
       float: right;
     }

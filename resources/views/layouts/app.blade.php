@@ -10,25 +10,23 @@
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
 
-
 </head>
 <body>
 
     @if(Auth::check())
-        <a href="{{ url('/logout') }}" class="info"
-            onclick="event.preventDefault();
-                     document.getElementById('logout-form').submit();">
-            Logout
-        </a>
+
 
         <form id="logout-form" action="{{ url('/logout') }}" method="POST" >
             {{ csrf_field() }}
         </form>
     @endif
+
     <div class="container">
         <div class="wrapper">
             @yield('content')
         </div>
     </div>
+    @yield('inner')
+    <script src="/js/app.js"></script>
 </body>
 </html>

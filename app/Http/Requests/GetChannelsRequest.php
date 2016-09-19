@@ -2,32 +2,27 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\SlackRequest;
-use CL\Slack\Transport\ApiClient;
 use CL\Slack\Payload\ChannelsListPayload;
 use Auth;
 
 class GetChannelsRequest extends SlackRequest
 {
     /**
-     * Send API request to Trello and parse
+     * Send API request to Slack and parse
      * json data from response.
      *
      * @return array
      */
     public function getJSON()
     {
-        $client = new ApiClient(Auth::user()->remember_token);
-
+        // Set plugin payload
         $payload = new ChannelsListPayload();
         $payload->setExcludeArchived(true);
 
-        $response = $client->send($payload);
+        // Get response
+        $response = $this->client->send($payload);
 
-        // Error handling
-        if ($response->isOk())
-            return $response->getChannels();
-        else
-            return 'Failed to post message to Slack: %s.' . $response->getErrorExplanation();
+        // Check for messages
+        return $this->sendResponse($response, $response->getChannels(), $response->getErrorExplanation());
     }
 }

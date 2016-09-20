@@ -5,33 +5,57 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\SendPrivateMessageRequest;
 use App\Chat;
+use DB;
+use Auth;
+
 class HomeController extends Controller
 {
 
     /**
      * Create a new controller instance.
-     *
-     * @return void
      */
     public function __construct()
     {
         $this->middleware('auth');
         $this->middleware('token');
     }
-    /**
-     * Show the application dashboard.
-     *
-     * @param Request $request.
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request)
-    {
-        $channels = Chat::all()->pluck('chat_id');
-        $sendTo = '';
-        if($request->session('name'))
-            $sendTo =  $request->session()->get('name');
 
-        return view('home', compact('channels','sendTo'));
+    /**
+     * Main homepage.
+     *
+     * @return view
+     */
+    public function index()
+    {
+        $channels = DB::table('channels')
+                        ->where('user_id', Auth::user()->id)
+                        ->where('is_member', true)
+                        ->get();
+
+        $ims = DB::table('ims')
+                        ->where('user_id', Auth::user()->id)
+                        ->where('chat_id', '!=', null)
+                        ->get();
+
+        $history = [];
+        if(session('chat'))
+        {
+            $history = session('chat');
+            session()->forget('chat');
+        }
+
+        return view('home', compact('channels', 'ims', 'history'));
+
+    }
+
+    /**
+     * Show specific chat with history.
+     *
+     * @return redirect
+     */
+    public function chat(Request $request)
+    {
+        return redirect('/')->with('chat', $request->chat);
     }
 
     public function send(SendPrivateMessageRequest $request)
@@ -40,13 +64,5 @@ class HomeController extends Controller
         $request->session()->flash('name', $request->input('send_to'));
 
         return redirect('/');
-    }
-    public function get($user){
-        $channels = Chat::all()->pluck('chat_id');
-        $sendTo = $user;
-
-
-        return view('home', compact('channels','sendTo'));
-
     }
 }

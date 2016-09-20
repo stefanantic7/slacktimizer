@@ -11,7 +11,7 @@ class GetChannelsRequest extends SlackRequest
      * Send API request to Slack and parse
      * json data from response.
      *
-     * @return array
+     * @return object
      */
     public function getJSON()
     {

@@ -21,7 +21,7 @@ class SendPrivateMessageRequest extends SlackRequest
         $response = $this->client->send($payload);
 
         // Check for messages
-        $this->sendResponse($response, $response->getChannelId(), $response->getErrorExplanation());
+        $this->sendResponse($response, $response->getMessages(), $response->getErrorExplanation());
     }
 
     /**

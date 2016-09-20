@@ -2,7 +2,8 @@
 
 namespace App\Repositories;
 
-use App\Chat;
+use App\Channel;
+use App\Im;
 use App\Helpers\Helper;
 use Auth;
 use DB;
@@ -15,47 +16,71 @@ use DB;
 abstract class Repository
 {
     /**
-     * Fill chats table with user channels.
+     * Fill channels table with user channels.
      *
      * @param array $channels
      */
     public static function saveChannels($channels)
     {
-        DB::table('chats')
-                    ->where('user_id', '=', Auth::user()->id)
-                    ->where('type_id', '=', '2')
-                    ->delete();
+        // Begin transaction
+        DB::beginTransaction();
 
-        foreach($channels as $channel)
+        try
         {
-            Chat::create(['user_id' => Auth::user()->id,
-                          'type_id' => '2',
-                          'chat_id' => $channel->getId(),
-                          'name' => $channel->getName()]);
+            // Remove old channels
+            DB::table('channels')
+                        ->where('user_id', '=', Auth::user()->id)
+                        ->delete();
+
+            // Add new channels
+            foreach($channels as $channel)
+            {
+                Channel::create(['user_id' => Auth::user()->id,
+                                 'chat_id' => $channel->getId(),
+                                 'name' => $channel->getName(),
+                                 'is_member' => $channel->isMember()]);
+            }
+
+            DB::commit();
+        } catch (Exception $e)
+        {
+            // Return error
+            DB::rollback();
         }
     }
 
     /**
-     * Fill chats table with user ims.
+     * Fill ims table with user ims.
      *
      * @param array $ims
      * @param array $users
      */
     public static function saveIms($ims, $users)
     {
-        DB::table('chats')
-                    ->where('user_id', '=', Auth::user()->id)
-                    ->where('type_id', '=', '1')
-                    ->delete();
+        // Begin transaction
+        DB::beginTransaction();
 
-        foreach($users as $user)
+        try
         {
-            Chat::create(['user_id' => Auth::user()->id,
-                         'slack_user_id' => $user->getId(),
-                         'type_id' => '1',
-                         'chat_id' => Helper::parseChatId($ims, $user->getId()),
-                         'username' => $user->getName(),
-                         'name' => $user->getProfile()->getRealName()]);
+            // Delete old ims
+            DB::table('ims')
+                        ->where('user_id', '=', Auth::user()->id)
+                        ->delete();
+
+            foreach($users as $user)
+            {
+                Im::create(['user_id' => Auth::user()->id,
+                            'slack_user_id' => $user->getId(),
+                            'chat_id' => Helper::parseChatId($ims, $user->getId()),
+                            'username' => $user->getName(),
+                            'name' => $user->getProfile()->getRealName()]);
+            }
+
+            DB::commit();
+        } catch (Exception $e)
+        {
+            // Return error
+            DB::rollback();
         }
     }
 }

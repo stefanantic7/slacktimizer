@@ -2,10 +2,11 @@
 
 namespace App\Http\Requests;
 
-use CL\Slack\Transport\ApiClient;
 use Auth;
+use GuzzleHttp;
+use GuzzleHttp\Client;
 
-abstract class SlackRequest extends Request
+class SlackRequest extends Request
 {
     /**
      * @var ApiClient
@@ -13,21 +14,45 @@ abstract class SlackRequest extends Request
     protected $client;
 
     /**
-     * MessagesController constructor.
+     * SlackRequest constructor, for GuzzleHttp
+     * client initialization.
+     *
+     * @param array $query
      */
-    public function __construct()
+    public function __construct($query)
     {
-        // Set user
-        $this->client = new ApiClient(Auth::user()->remember_token);
+        // Set token
+        $query['token'] = Auth::user()->remember_token;
+
+        $this->client = new Client([
+            'base_uri' => 'https://slack.com/api/',
+            'timeout'  => 0,
+            'query'    => $query
+        ]);
     }
 
     /**
-     * Send API request to Trello and parse
+     * Send API request to Slack and parse
      * json data from response.
      *
+     * @param string $method
      * @return json
      */
-    public function getJSON() {}
+    public function getJSON($method)
+    {
+        try
+        {
+            $response = $this->client->get($method)->getBody();
+        }
+        catch (GuzzleHttp\Exception\ClientException $e) {
+            $response = $e->getResponse();
+
+            return $response->getBody()->getContents();
+        }
+
+        // Return json
+        return json_decode($response, true);
+    }
 
     /**
      * Determine if the user is authorized to make this request.
@@ -36,8 +61,6 @@ abstract class SlackRequest extends Request
      */
     public function authorize()
     {
-        // TODO: Token request!
-
         return true;
     }
 
@@ -49,21 +72,5 @@ abstract class SlackRequest extends Request
     public function rules()
     {
         return [];
-    }
-
-    /**
-     * Send response back.
-     *
-     * @param Response $response
-     * @param string $ok
-     * @param string $error
-     * @return object
-     */
-    protected function sendResponse($response, $ok, $error)
-    {
-        if ($response->isOk())
-            return $ok;
-        else
-            dd('Failed to post message to Slack: %s' . $error);
     }
 }

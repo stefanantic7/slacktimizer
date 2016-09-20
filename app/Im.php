@@ -4,14 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Chat extends Model
+class Im extends Model
 {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'chats';
+    protected $table = 'ims';
 
     /**
      * Set timestamps off.
@@ -23,6 +23,6 @@ class Chat extends Model
      *
      * @var array
      */
-    protected $fillable = ['user_id', 'slack_user_id', 'type_id', 'chat_id', 'username', 'name'];
+    protected $fillable = ['user_id', 'slack_user_id', 'chat_id', 'username', 'name'];
 
 }

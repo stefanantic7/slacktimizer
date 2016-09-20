@@ -15,12 +15,6 @@
         @endforeach
     </div>
     <div class="content">
-        {{--{!! Form::open(array('method' => 'post', 'url'=>'/')) !!}--}}
-        {{--<input name="send_to" id="sendTo"> <br/><br/>--}}
-        {{--{!! Form::textarea('message', null, array('placeholder'=>'Type a message')) !!} <br><br>--}}
-        {{--{!! Form::submit('Send') !!}--}}
-
-        {{--{!! Form::close() !!}--}}
         <form method="post" action="/">
             {{csrf_field()}}
             <input type="hidden" name="send_to" id="sendTo" value="{{$sendTo}}">

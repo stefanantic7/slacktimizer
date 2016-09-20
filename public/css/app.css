@@ -72,10 +72,10 @@ textarea {
       font-size: 13px; }
   .content .historyMessages {
     overflow-y: auto;
-    height: calc(100% - 140px);
+    height: calc(100% - 120px);
     position: absolute;
     width: calc(100% - 298px);
-    margin: 20px 0 0 48px; }
+    margin-left: 48px; }
     .content .historyMessages .userName {
       font-weight: bold;
       display: inline; }
@@ -91,18 +91,18 @@ textarea {
     height: 37px;
     bottom: 8px;
     left: 0;
-    padding-left: 250px; }
+    padding-left: 290px;
+    padding-right: 40px; }
     .content .sendWrapper .newMessage {
-      padding-right: 130px;
+      float: left;
       height: 100%;
-      width: 98%;
-      margin: 0 1% 0 1%; }
+      width: 90%;
+      padding: 7px;
+      line-height: 19px; }
     .content .sendWrapper .sendMessage {
-      margin: 3px 0 4px 0;
-      padding: 6px 31px 6px 31px;
-      position: absolute;
-      top: 0;
-      right: 25px; }
+      float: left;
+      height: 100%;
+      width: 10%; }
 
 @media screen and (max-width: 480px) {
   .sideBar {
@@ -123,9 +123,12 @@ textarea {
     .content .historyMessages {
       width: 100%; }
     .content .sendWrapper {
-      padding-left: 0; }
+      padding-left: 10px;
+      padding-right: 10px; }
+      .content .sendWrapper .newMessage {
+        width: 85%; }
       .content .sendWrapper .sendMessage {
-        right: 13px; } }
+        width: 15%; } }
 
 * {
   box-sizing: border-box;

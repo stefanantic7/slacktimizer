@@ -33,12 +33,12 @@ abstract class Repository
                         ->delete();
 
             // Add new channels
-            foreach($channels as $channel)
+            foreach($channels['channels'] as $channel)
             {
                 Channel::create(['user_id' => Auth::user()->id,
-                                 'chat_id' => $channel->getId(),
-                                 'name' => $channel->getName(),
-                                 'is_member' => $channel->isMember()]);
+                                 'chat_id' => $channel['id'],
+                                 'name' => $channel['name'],
+                                 'is_member' => $channel['is_member']]);
             }
 
             DB::commit();
@@ -57,6 +57,8 @@ abstract class Repository
      */
     public static function saveIms($ims, $users)
     {
+//        dd($ims);
+
         // Begin transaction
         DB::beginTransaction();
 
@@ -67,13 +69,13 @@ abstract class Repository
                         ->where('user_id', '=', Auth::user()->id)
                         ->delete();
 
-            foreach($users as $user)
+            foreach($users['members'] as $user)
             {
                 Im::create(['user_id' => Auth::user()->id,
-                            'slack_user_id' => $user->getId(),
-                            'chat_id' => Helper::parseChatId($ims, $user->getId()),
-                            'username' => $user->getName(),
-                            'name' => $user->getProfile()->getRealName()]);
+                            'slack_user_id' => $user['id'],
+                            'chat_id' => Helper::parseChatId($ims['ims'], $user['id']),
+                            'username' => $user['name'],
+                            'name' => $user['profile']['real_name']]);
             }
 
             DB::commit();

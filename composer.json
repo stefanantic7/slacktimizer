@@ -9,7 +9,6 @@
         "laravel/framework": "5.3.*",
         "socialiteproviders/slack": "^2.0",
         "laravel/socialite": "^2.0",
-        "cleentfaar/slack": "~0.14",
         "laravelcollective/html": "^5.3"
     },
     "require-dev": {

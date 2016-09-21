@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\SendPrivateMessageRequest;
-use App\Chat;
 use DB;
 use Auth;
+use App\Http\Requests\SlackRequest;
 
 class HomeController extends Controller
 {
@@ -49,19 +48,22 @@ class HomeController extends Controller
     }
 
     /**
-     * Show specific chat with history.
+     * Send message.
      *
-     * @return redirect
+     * @param Request $request
+     * @return response
      */
-    public function chat(Request $request)
+    public function send(Request $request)
     {
-        return redirect('/')->with('chat', $request->chat);
-    }
+        // Initialize Slack request
+        $request = new SlackRequest([
+            'channel' => $request->send_to,
+            'text' => $request->message,
+            'as_user' => true
+        ]);
 
-    public function send(SendPrivateMessageRequest $request)
-    {
-        $request->getJSON();
-        $request->session()->flash('name', $request->input('send_to'));
+        // Get json from Slack
+        $request->getJSON('chat.postMessage');
 
         return redirect('/');
     }

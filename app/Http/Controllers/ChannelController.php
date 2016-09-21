@@ -36,13 +36,18 @@ class ChannelController extends Controller
      * Get channels from Slack for logged user
      * and store them to database.
      *
-     * @param GetChannelsRequest $request
      * @return object
      */
-    public function get(GetChannelsRequest $request)
+    public function get()
     {
-        $channels = $request->getJson();
+        // Initialize Slack request
+        $request = new SlackRequest([
+            'exclude_archived' => 1
+        ]);
 
-        Repository::saveChannels($channels);
+        // Get json from Slack
+        $json = $request->getJSON('channels.list');
+
+        Repository::saveChannels($json);
     }
 }

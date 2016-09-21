@@ -35,4 +35,3 @@ Route::get('/ims/get', 'ImController@get');
 Route::get('/test', 'TestController@index');
 
 
-//$2y$10$LO8pdWX6YW2cRB7NDXvSce7GpYMRLW2h.YfxNkl3ldeCqsH1KJlAi

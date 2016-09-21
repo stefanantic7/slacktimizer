@@ -8,6 +8,14 @@
   left: 0;
   color: #9f9f9f;
   overflow-y: auto;
+  .info{
+    font-size: 16px;
+    margin: 10px 0 8px 14px;
+    .teamName{
+      color: white;
+      font-size: 22px;
+    }
+  }
   .section{
     padding: 14px;
     font-size: 16px;

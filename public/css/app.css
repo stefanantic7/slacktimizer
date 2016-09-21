@@ -22,6 +22,12 @@ textarea {
   left: 0;
   color: #9f9f9f;
   overflow-y: auto; }
+  .sideBar .info {
+    font-size: 16px;
+    margin: 10px 0 8px 14px; }
+    .sideBar .info .teamName {
+      color: white;
+      font-size: 22px; }
   .sideBar .section {
     padding: 14px;
     font-size: 16px; }
@@ -42,6 +48,11 @@ textarea {
     .sideBar .channels a {
       color: #9f9f9f;
       text-decoration: none; }
+
+.welcome {
+  position: absolute;
+  top: 50%;
+  left: 50%; }
 
 .sideBarIcon {
   z-index: 1;

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\Helper;
 use App\Http\Requests\SlackRequest;
+use App\Repositories\Repository;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -53,16 +54,21 @@ class ImController extends Controller
     public function get()
     {
         // Initialize Slack request
-        $request = new SlackRequest([
-            'channel' => 'D1V5A8C1K',
-            'count' => 10
+        $requestIms = new SlackRequest([
+            'exclude_archived' => 1
         ]);
 
         // Get json from Slack
-        $json = $request->getJSON('im.history');
-        dd($json);
-        // TODO: Parse data.
-        // TODO: Return to homepage.
-//        return $json;
+        $jsonIms = $requestIms->getJSON('im.list');
+
+        // Initialize Slack request
+        $requestUsers = new SlackRequest([
+            'exclude_archived' => 1
+        ]);
+
+        // Get json from Slack
+        $jsonUsers = $requestUsers->getJSON('users.list');
+
+        Repository::saveIms($jsonIms, $jsonUsers);
     }
 }

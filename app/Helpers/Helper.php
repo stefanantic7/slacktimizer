@@ -38,33 +38,6 @@ abstract class Helper
     }
 
     /**
-     * Prepare channel message history.
-     *
-     * @param array $ims
-     * @return array $ims
-     */
-    public static function prepareChannelHistory($messages)
-    {
-        dd($messages);
-        $users = DB::table('ims')
-            ->where('user_id', Auth::user()->id)
-            ->pluck('username', 'slack_user_id')
-            ->toArray();
-
-//        foreach($ims['messages'] as $message)
-//        {
-//            $history[] = [
-//                'username' => $users[$message['user']],
-//                'timestamp' => date('d-m-Y H:i', 1474375082.000008),
-//                'text' => $message['text']
-//            ];
-//        }
-
-//        return $history;
-    }
-
-
-    /**
      * Parse chat id
      *
      * @param array $ims
@@ -75,15 +48,10 @@ abstract class Helper
     {
         foreach($ims as $im)
         {
-            if($im->getUserId() == $userId)
-                return $im->getId();
+            if($im['user'] == $userId)
+                return $im['id'];
         }
 
         return null;
-    }
-
-    private static function mapUserToSlackId()
-    {
-
     }
 }

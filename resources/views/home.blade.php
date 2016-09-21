@@ -33,6 +33,7 @@
                 </a>
             </div>
             <div class="historyMessages">
+                <input type="hidden" name="send_to" value="U1V5A1G15" />
                 @foreach($history as $message)
                     <div class="userName">&#64{{$message['username']}}</div>
                     <div class="messageTime">{{$message['timestamp']}}</div>

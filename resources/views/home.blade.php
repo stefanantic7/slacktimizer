@@ -19,7 +19,9 @@
         @endforeach
     </div>
     <div class="content">
+        @if(empty($history))
         <div class="welcome">Welcome</div>
+        @endif
         <form method="post" action="/">
             {{csrf_field()}}
 

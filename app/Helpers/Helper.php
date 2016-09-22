@@ -25,6 +25,7 @@ abstract class Helper
                         ->pluck('username', 'slack_user_id')
                         ->toArray();
 
+        $history = [];
         foreach($ims['messages'] as $message)
         {
             $history[] = [

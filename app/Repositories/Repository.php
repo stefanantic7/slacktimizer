@@ -57,8 +57,6 @@ abstract class Repository
      */
     public static function saveIms($ims, $users)
     {
-//        dd($ims);
-
         // Begin transaction
         DB::beginTransaction();
 

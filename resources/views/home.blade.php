@@ -4,6 +4,10 @@
     <div class="sideBarIcon" onclick="showSideBar()"><hr/><hr/><hr/>
     </div>
     <div class="sideBar">
+        <div class="info">
+            <div class="teamName">Labs</div>
+            <div class="mainUser">antic</div>
+        </div>
         <div class="section">CHANNELS <span class="plus">+</span></div>
         @foreach($channels as $channel)
             <div class="channels"><a href="/channels/chat/{{$channel->chat_id}}">&#35{{$channel->name}}</a></div><br>
@@ -15,6 +19,9 @@
         @endforeach
     </div>
     <div class="content">
+        @if(empty($history))
+        <div class="welcome">Welcome</div>
+        @endif
         <form method="post" action="/">
             {{csrf_field()}}
 

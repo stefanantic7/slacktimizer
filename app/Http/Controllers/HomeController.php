@@ -9,7 +9,6 @@ use App\Http\Requests\SlackRequest;
 
 class HomeController extends Controller
 {
-
     /**
      * Create a new controller instance.
      */

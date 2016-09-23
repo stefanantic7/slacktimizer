@@ -41,7 +41,7 @@ class HomeController extends Controller
             $history = session('chat');
             session()->forget('chat');
         }
-
+        dd();
         return view('home', compact('channels', 'ims', 'history'));
 
     }

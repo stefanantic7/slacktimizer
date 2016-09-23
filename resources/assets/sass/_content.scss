@@ -38,12 +38,10 @@
   }
   .historyMessages{
     overflow-y: auto;
-    height: calc(100% - 120px);
+    height: calc(100% - 116px);
     position: absolute;
     width: calc(100% - 298px);
-
-    //margin-bottom: 30%;
-    margin-left: 48px;
+    margin: 15px 0 0 48px;
     .userName{
       font-weight: bold;
       display: inline;

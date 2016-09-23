@@ -9,19 +9,25 @@
 
     <input class="alignRight" id="email" type="email" name="email" value="{{ old('email') }}" autofocus>
     <br/>
+
     @if ($errors->has('email'))
-        <span style="clear: both;"><strong>{{ $errors->first('email') }}</strong></span>
+        <span class="error" style="clear: both;">
+            {{ $errors->first('email') }}
+        </span>
     @endif<br/>
 
 
     <label for="password">Password</label>
 
 
-        <input class="alignRight" id="password" type="password" name="password">
-        <br/>
-        @if ($errors->has('password'))
-            <span><strong>{{ $errors->first('password') }}</strong></span>
-        @endif<br/>
+    <input class="alignRight" id="password" type="password" name="password">
+    <br/>
+
+    @if ($errors->has('password'))
+        <span class="error">
+            {{ $errors->first('password') }}
+        </span>
+    @endif<br/>
 
 
 
@@ -29,10 +35,10 @@
     <input type="checkbox" name="remember"> Remember Me <br/><br/>
 
 
-    <button type="submit">Login</button>
+    <button type="submit" class="submit">Login</button>
 
     <a class="alignRight" href="{{ url('/password/reset') }}">Forgot Your Password?</a><br/>
-    <a class="alignRight" href="/register">Register</a>
+    <a href="/register">Register</a>
 </form>
 
 @endsection

@@ -17,3 +17,5 @@ function hideSideBar() {
     document.getElementsByClassName('sideBar')[0].style.visibility = 'hidden';
     document.getElementsByClassName('sideBarMask')[0].style.visibility='hidden';
 }
+var historyMessages = document.getElementsByClassName("historyMessages")[0];
+historyMessages.scrollTop=historyMessages.scrollHeight;

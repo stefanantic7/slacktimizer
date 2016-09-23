@@ -7,6 +7,7 @@ use App\Http\Requests\SlackRequest;
 use App\Repositories\Repository;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Collection;
 
 class ImController extends Controller
 {
@@ -26,8 +27,9 @@ class ImController extends Controller
 
         // Get json from Slack
         $json = $request->getJSON('im.history');
-
+        dd($json);
         $history = Helper::prepareImsHistory($json);
+        $history = collect($history)->reverse()->all();
 
         return redirect('/')->with('chat', $history);
     }

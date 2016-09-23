@@ -7,6 +7,7 @@ use App\Repositories\Repository;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Helpers\Helper;
+use Illuminate\Support\Collection;
 
 class ChannelController extends Controller
 {
@@ -28,6 +29,9 @@ class ChannelController extends Controller
         $json = $request->getJSON('channels.history');
 
         $history = Helper::prepareImsHistory($json);
+
+        $history =collect($history)->reverse()->all();
+
 
         return redirect('/')->with('chat', $history);
     }

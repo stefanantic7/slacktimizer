@@ -8,17 +8,16 @@ class TestController extends Controller
 {
     public function index()
     {
-        dd(date('d-m-Y H:i', 1474375082.000008));
+        $token = decrypt('0xEE3paZS4EucdIFpI2WaYxGrStdSbmcLsEtNSMROGM68GXepeUbudLpXkh8');
 
-//         Initialize Slack request
+        dd($token);
 //        $request = new SlackRequest([
-//            'channel' => 'D1V5A8C1K',
-//            'count' => 10
+//            'channel' => 'U1V5A1G15'
 //        ]);
 //
 //        // Get json from Slack
-//        $json = $request->getJSON('im.history');
-//
+//        $json = $request->getJSON('channels.history');
+//        dd($json);
 //        // TODO: Parse data and return.
 //        return $json;
     }

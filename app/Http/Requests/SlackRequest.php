@@ -22,7 +22,7 @@ class SlackRequest extends Request
     public function __construct($query)
     {
         // Set token
-        $query['token'] = Auth::user()->remember_token;
+        $query['token'] = Auth::user()->slack_token;
 
         $this->client = new Client([
             'base_uri' => 'https://slack.com/api/',

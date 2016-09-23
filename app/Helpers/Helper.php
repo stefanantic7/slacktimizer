@@ -29,7 +29,7 @@ abstract class Helper
         foreach($ims['messages'] as $message)
         {
             $history[] = [
-                'username' => $users[$message['user']],
+                'username' => (isset($message['user'])) ? $users[$message['user']] : "Bot",
                 'timestamp' => date('d-m-Y H:i', $message['ts']),
                 'text' => $message['text']
             ];
@@ -55,4 +55,17 @@ abstract class Helper
 
         return null;
     }
+
+//    /**
+//     * Get user if not bot.
+//     *
+//     * @param array $ims
+//     * @return string
+//     */
+//    private static function bot($users, $message)
+//    {
+//        if(isset())
+//
+//        return "";
+//    }
 }

@@ -7,9 +7,21 @@ use App\Http\Requests\SlackRequest;
 use App\Repositories\Repository;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Auth;
+use App\Im;
+use DB;
 
 class ImController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('token');
+    }
+
     /**
      * Get chat history and redirect it to homepage.
      *
@@ -18,10 +30,13 @@ class ImController extends Controller
      */
     public function chat(Request $request)
     {
+        $chatId = $request->chat;
+
         // Initialize Slack request
         $request = new SlackRequest([
             'channel' => $request->chat,
-            'count' => 10
+            'count' => 10,
+            'unreads' => 1
         ]);
 
         // Get json from Slack
@@ -29,20 +44,25 @@ class ImController extends Controller
 
         $history = Helper::prepareImsHistory($json);
 
-        return redirect('/')->with('chat', $history);
-    }
+        $chatName = Im::where('chat_id', $chatId)
+            ->where('user_id', Auth::user()->id)
+            ->first();
 
-    /**
-     * Send message.
-     *
-     * @param SendPrivateMessageRequest $request
-     * @return View
-     */
-    public function send(SendPrivateMessageRequest $request)
-    {
-        $request->getJson();
+        $channels = DB::table('channels')
+            ->where('user_id', Auth::user()->id)
+            ->where('is_member', true)
+            ->get();
 
-        return redirect('direct');
+        $ims = DB::table('ims')
+            ->where('user_id', Auth::user()->id)
+            ->where('chat_id', '!=', null)
+            ->get();
+
+
+        $chatName = '@' . $chatName->username;
+
+//        return redirect('/')->with(['chat' => $history, 'chat_name' => '@' . $chatName->username]);
+        return view('home', compact('channels', 'ims', 'history', 'chatName', 'chatId'));
     }
 
     /**

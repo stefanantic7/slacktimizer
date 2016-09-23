@@ -61,8 +61,14 @@ class LoginController extends Controller
         $slackUser = Socialite::driver('slack')->user();
         $user = User::find(Auth::user()->id);
 
-        $user->remember_token = $slackUser->token;
+        $user->slack_token = $slackUser->token;
+        $user->team_name = $slackUser->user['team']['name'];
         $user->save();
+
+        Auth::login($user);
+
+        app('App\Http\Controllers\ChannelController')->get();
+        app('App\Http\Controllers\ImController')->get();
 
         return redirect('/');
     }

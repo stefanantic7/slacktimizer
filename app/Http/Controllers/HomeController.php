@@ -36,27 +36,33 @@ class HomeController extends Controller
                         ->get();
 
         $history = [];
+        $chatName = null;
+        $chatId = null;
         if(session('chat'))
         {
             $history = session('chat');
             session()->forget('chat');
+            $chatName = session('chat_name');
+            session()->forget('chat_name');
+            $chatId = session('chat_id');
+            session()->forget('chat_id');
         }
 
-        return view('home', compact('channels', 'ims', 'history'));
-
+        return view('home', compact('channels', 'ims', 'history', 'chatName', 'chatId'));
     }
 
     /**
      * Send message.
      *
      * @param Request $request
+     * @param  string $chat
      * @return response
      */
-    public function send(Request $request)
+    public function send(Request $request, $chat)
     {
         // Initialize Slack request
         $request = new SlackRequest([
-            'channel' => $request->send_to,
+            'channel' => $chat,
             'text' => $request->message,
             'as_user' => true
         ]);
@@ -64,6 +70,6 @@ class HomeController extends Controller
         // Get json from Slack
         $request->getJSON('chat.postMessage');
 
-        return redirect('/');
+        return back();
     }
 }

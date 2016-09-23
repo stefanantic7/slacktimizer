@@ -18,7 +18,7 @@ class MustHaveToken
     {
 //        $user = Auth::user()->remember;
 //        $user = $request->user();
-        if(Auth::user() && Auth::user()->remember_token!='') {
+        if(Auth::user() && Auth::user()->slack_token != '') {
             return $next($request);
         }
         else{

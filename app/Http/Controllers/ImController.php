@@ -42,7 +42,7 @@ class ImController extends Controller
         // Get json from Slack
         $json = $request->getJSON('im.history');
 
-        $history = Helper::prepareImsHistory($json);
+        $history = collect(Helper::prepareImsHistory($json))->reverse();;
 
         $chatName = Im::where('chat_id', $chatId)
             ->where('user_id', Auth::user()->id)

@@ -41,7 +41,7 @@ class ChannelController extends Controller
         // Get json from Slack
         $json = $request->getJSON('channels.history');
 
-        $history = Helper::prepareImsHistory($json);
+        $history = collect(Helper::prepareImsHistory($json))->reverse();
 
         $chatName = Channel::where('chat_id', $chatId)
                             ->where('user_id', Auth::user()->id)

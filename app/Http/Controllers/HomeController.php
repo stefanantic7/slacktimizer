@@ -26,20 +26,19 @@ class HomeController extends Controller
     public function index()
     {
         $channels = DB::table('channels')
-                        ->where('user_id', Auth::user()->id)
-                        ->where('is_member', true)
-                        ->get();
+            ->where('user_id', Auth::user()->id)
+            ->where('is_member', true)
+            ->get();
 
         $ims = DB::table('ims')
-                        ->where('user_id', Auth::user()->id)
-                        ->where('chat_id', '!=', null)
-                        ->get();
+            ->where('user_id', Auth::user()->id)
+            ->where('chat_id', '!=', null)
+            ->get();
 
         $history = [];
         $chatName = null;
         $chatId = null;
-        if(session('chat'))
-        {
+        if (session('chat')) {
             $history = session('chat');
             session()->forget('chat');
             $chatName = session('chat_name');
@@ -71,5 +70,44 @@ class HomeController extends Controller
         $request->getJSON('chat.postMessage');
 
         return back();
+    }
+
+    /**
+     * All channels.
+     *
+     * @return view
+     */
+    public function allChannels()
+    {
+        $channels = DB::table('channels')
+            ->where('user_id', Auth::user()->id)
+            ->where('is_member', true)
+            ->get();
+        $otherChannels = DB::table('channels')
+            ->where('user_id', Auth::user()->id)
+            ->where('is_member', false)
+            ->get();
+
+        return view('selectChannel',compact('channels','otherChannels'));
+    }
+
+    /**
+     * All users.
+     *
+     * @return view
+     */
+    public function allUsers()
+    {
+        $ims = DB::table('ims')
+            ->where('user_id', Auth::user()->id)
+            ->where('chat_id', '!=', null)
+            ->get();
+
+        $otherIms = DB::table('ims')
+            ->where('user_id', Auth::user()->id)
+            ->where('chat_id', '=', null)
+            ->get();
+
+        return view('selectUser',compact('ims', 'otherIms'));
     }
 }

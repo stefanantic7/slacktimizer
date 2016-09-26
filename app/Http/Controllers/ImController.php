@@ -44,7 +44,7 @@ class ImController extends Controller
 
         $history = collect(Helper::prepareImsHistory($json))->reverse();;
 
-        $chatName = Im::where('chat_id', $chatId)
+        $user = Im::where('chat_id', $chatId)
             ->where('user_id', Auth::user()->id)
             ->first();
 
@@ -59,10 +59,10 @@ class ImController extends Controller
             ->get();
 
 
-        $chatName = '@' . $chatName->username;
-
+        $chatName = '@' . $user->username;
+        $fullName = $user->name;
 //        return redirect('/')->with(['chat' => $history, 'chat_name' => '@' . $chatName->username]);
-        return view('home', compact('channels', 'ims', 'history', 'chatName', 'chatId'));
+        return view('home', compact('channels', 'ims', 'history', 'chatName', 'chatId', 'fullName'));
     }
 
     /**

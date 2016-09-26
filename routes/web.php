@@ -34,4 +34,7 @@ Route::get('/ims/get', 'ImController@get');
 
 Route::get('/test', 'TestController@index');
 
+//All channels and users
+Route::get('/channels','HomeController@allChannels');
+Route::get('/ims','HomeController@allUsers');
 

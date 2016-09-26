@@ -1,0 +1,25 @@
+.selectContainer{
+  text-align: center;
+  .selectWrapper{
+    width: 300px;
+    text-align: left;
+    display: inline-block;
+    .choiceWrapper{
+      border-top: #9f9f9f solid 1px;
+      height: 40px;
+      padding: 10px 0 0 3px;
+      .choiceName{
+        color: #2f2f31;
+      }
+
+      &:hover{
+        background: rgba(102, 173, 159, 0.25);
+
+      }
+    }
+    h5{
+      margin-bottom: 7px;
+      color: #9f9f9f;
+    }
+  }
+}

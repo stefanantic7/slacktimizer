@@ -5,13 +5,13 @@
     </div>
     <div class="sideBar">
         <div class="info">
-            <div class="teamName">{{Auth::user()->team_name}}</div>
-            <div class="mainUser">{{Auth::user()->name}}</div>
+            <a href="/" class="links">
+                <span class="teamName">{{Auth::user()->team_name}}</span><br/>
+                <span class="mainUser">{{Auth::user()->name}}</span>
+            </a>
         </div>
-        <div class="section">CHANNELS <span class="plus">+</span></div>
-        @foreach($channels as $channel)
-            <div class="channels"><a href="/channels/chat/{{$channel->chat_id}}">&#35{{$channel->name}}</a></div><br>
-        @endforeach
+        <div class="section"><a href="/channels" class="links">CHANNELS <span class="plus">+</span></a></div>
+
         {{--<select>--}}
             {{--<option>1</option>--}}
             {{--<option>2</option>--}}
@@ -19,28 +19,32 @@
             {{--<option>4</option>--}}
             {{--<option>5</option>--}}
         {{--</select>--}}
-        <div class="section">DIRECT MESSAGES <span class="plus">+</span></div>
-        @foreach($ims as $im)
-            <div class="channels"><a href="/ims/chat/{{$im->chat_id}}">&#64{{$im->username}}</a></div><br>
-        @endforeach
+        <div class="section"><a href="/ims" class="links">DIRECT MESSAGES <span class="plus">+</span></a></div>
+
     </div>
     <div class="content">
-        @if(empty($history))
-        <div class="welcome">Welcome</div>
-        @endif
+
         <form method="post" action="{{url('/' . $chatId)}}">
             {{csrf_field()}}
 
             <div class="userInfo">
+                @if(empty($history))
+                    <div class="welcome">Welcome to Slack optimizer</div>
+                @endif
                 <div class="sideBarMask" onclick="hideSideBar()"></div>
-                <p class="fullName">{{$chatName}}</p>
+                <span id="labelSendTo">{{$chatName}}</span>
+                @if(isset($fullName))
+                    <p class="fullName">{{$fullName}}</p>
+                @endif
                 <a href="{{ url('/logout') }}" class="logout"
                     onclick="event.preventDefault();
                      document.getElementById('logout-form').submit();">
                     Logout
                 </a>
             </div>
+
             <div class="historyMessages">
+
                 @foreach($history as $message)
                     <div class="userName">&#64{{$message['username']}}</div>
                     <div class="messageTime">{{$message['timestamp']}}</div>
@@ -48,15 +52,21 @@
                 @endforeach
             </div>
 
-
-            <div class="sendWrapper">
-                <textarea name="message" rows="1" class="newMessage"></textarea>
-                <input type="submit" value="Send" class="sendMessage">
-            </div>
-
+            @if(!empty($history))
+                <div class="sendWrapper">
+                    <textarea name="message" rows="1" class="newMessage"></textarea>
+                    <input type="submit" value="Send" class="sendMessage">
+                </div>
+            @endif
         </form>
 
 
     </div>
 
+@endsection
+@section('customScript')
+    <script>
+        var historyMessages = document.getElementsByClassName("historyMessages")[0];
+        historyMessages.scrollTop=historyMessages.scrollHeight;
+    </script>
 @endsection

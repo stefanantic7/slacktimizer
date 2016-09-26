@@ -3,6 +3,7 @@
 @import "showMessages";
 @import "sidebar";
 @import "content";
+@import "select";
 * {
   box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -21,9 +22,6 @@ body{
 }
 .container{
   text-align: center;
-  //width: 60%;
-  //margin-left: 20%;
-  //margin-right: 20%;
   .wrapper{
     margin-top: 1%;
     display: inline-block;
@@ -40,9 +38,6 @@ body{
     input{
       margin: 0;
     }
-
-
-
   }
 }
 .error{

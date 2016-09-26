@@ -18,7 +18,7 @@ Route::get('auth/slack/callback', 'Auth\LoginController@handleProviderCallback')
 
 // Main home route
 Route::get('/', 'HomeController@index');
-Route::post('/', 'HomeController@send');
+Route::post('/{chat}', 'HomeController@send');
 
 // Get chats
 

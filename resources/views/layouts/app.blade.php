@@ -28,6 +28,5 @@
     </div>
     @yield('inner')
     <script src="/js/app.js"></script>
-    @yield('customScript')
 </body>
 </html>

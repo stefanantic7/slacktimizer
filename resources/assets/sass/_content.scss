@@ -1,6 +1,20 @@
-//.welcome{
-//
-//}
+
+.welcome{
+  height: 100vh;
+  width: 100vw;
+  //background-color: red;
+  text-align: center;
+  display:table-cell;
+  vertical-align:middle;
+  .firstLine{
+    font-size: 40px;
+    margin-bottom: 30px;
+  }
+  .secondLine{
+    font-size: 24px;
+  }
+}
+
 .sideBarIcon{
   z-index: 1;
   position: absolute;
@@ -23,6 +37,7 @@
 
   .userInfo {
     width: 100%;
+    height: 65px;
     padding: 15px 0 0 48px;
     border-bottom: solid 1px #e0e0e0;
     #labelSendTo {
@@ -36,10 +51,10 @@
   }
   .historyMessages{
     overflow-y: auto;
-    height: calc(100% - 116px);
+    height: calc(100% - 112px);
     position: absolute;
     width: calc(100% - 298px);
-    margin: 15px 0 0 48px;
+    margin-left:48px;
     .userName{
       font-weight: bold;
       display: inline;
@@ -51,6 +66,7 @@
     .message{
       margin: 10px 0 20px 0;
       padding-right: 75px;
+      word-wrap: break-word;
     }
   }
 
@@ -95,22 +111,27 @@
   }
   .content{
     padding-left: 0;
-
+    .sideBarMask{
+      z-index: 1;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      visibility: hidden;
+    }
     .userInfo{
       text-align: center;
       padding-left: 0;
-      .sideBarMask{
-        z-index: 1;
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 100%;
-        visibility: hidden;
-      }
+
     }
     .historyMessages{
       width: 100%;
+      .otherMessages{
+        text-align: center;
+        margin: 5px 0 9px -96px;
+        font-style: italic;
+      }
 
     }
 

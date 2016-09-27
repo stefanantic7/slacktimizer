@@ -2,8 +2,8 @@
 @section('inner')
     <div class="selectContainer">
         <div class="selectWrapper">
-            <h3>Select channel</h3>
-            <h5>Recent channels</h5>
+            <h1>Channels</h1>
+            <div class="part">Recent Conversations</div>
             @foreach($channels as $channel )
                 <a class="links" href="/channels/chat/{{$channel->chat_id}}">
                     <div class="choiceWrapper">
@@ -11,7 +11,8 @@
                     </div>
                 </a>
             @endforeach
-            <h5>Other channels</h5>
+            <br/>
+            <div class="part">Other Conversations</div>
             @foreach($otherChannels as $channel )
                 <a class="links" href="/channels/chat/{{$channel->chat_id}}">
                     <div class="choiceWrapper">

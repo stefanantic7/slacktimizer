@@ -2,8 +2,8 @@
 @section('inner')
     <div class="selectContainer">
         <div class="selectWrapper">
-            <h3>Select user</h3>
-            <h5>Recent users</h5>
+            <h1>Direct Messages</h1>
+            <div class="part">Recent Conversations</div>
             @foreach($ims as $im)
                 <a class="links" href="/ims/chat/{{$im->chat_id}}">
                     <div class="choiceWrapper">
@@ -15,7 +15,8 @@
                     </div>
                 </a>
             @endforeach
-            <h5>Other users</h5>
+            <br/>
+            <div class="part">Other Conversations</div>
             @foreach($otherIms as $im)
                 <a class="links" href="/ims/chat/{{$im->chat_id}}">
                     <div class="choiceWrapper">

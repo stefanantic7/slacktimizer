@@ -32,7 +32,7 @@
 
 
 
-    <input type="checkbox" name="remember"> Remember Me <br/><br/>
+    <label><input type="checkbox" name="remember"> Remember Me </label><br/><br/>
 
 
     <button type="submit" class="submit">Login</button>

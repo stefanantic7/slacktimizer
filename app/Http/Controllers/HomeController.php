@@ -25,29 +25,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $channels = DB::table('channels')
-            ->where('user_id', Auth::user()->id)
-            ->where('is_member', true)
-            ->get();
 
-        $ims = DB::table('ims')
-            ->where('user_id', Auth::user()->id)
-            ->where('chat_id', '!=', null)
-            ->get();
 
+        $chat='';
+        $page=1;
         $history = [];
         $chatName = null;
         $chatId = null;
-        if (session('chat')) {
-            $history = session('chat');
-            session()->forget('chat');
-            $chatName = session('chat_name');
-            session()->forget('chat_name');
-            $chatId = session('chat_id');
-            session()->forget('chat_id');
-        }
+        $option='';
 
-        return view('home', compact('channels', 'ims', 'history', 'chatName', 'chatId'));
+        return view('home', compact('history', 'chatName', 'chatId', 'page', 'chat', 'option'));
     }
 
     /**

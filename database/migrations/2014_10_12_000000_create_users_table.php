@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('team_name')->nullable();
             $table->string('slack_token')->nullable();
+            $table->rememberToken();
             $table->timestamps();
         });
     }

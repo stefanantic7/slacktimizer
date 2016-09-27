@@ -55,6 +55,11 @@
     position: absolute;
     width: calc(100% - 298px);
     margin-left:48px;
+    .otherMessages{
+      text-align: center;
+      margin: 5px 0 9px -96px;
+      font-style: italic;
+    }
     .userName{
       font-weight: bold;
       display: inline;
@@ -127,11 +132,7 @@
     }
     .historyMessages{
       width: 100%;
-      .otherMessages{
-        text-align: center;
-        margin: 5px 0 9px -96px;
-        font-style: italic;
-      }
+
 
     }
 

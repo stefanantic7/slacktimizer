@@ -4,22 +4,23 @@
     width: 300px;
     text-align: left;
     display: inline-block;
+    color: #2d2d2d;
     .choiceWrapper{
       border-top: #ebebeb solid 1px;
       height: 40px;
       padding: 10px 0 0 3px;
       .choiceName{
-        color: #2f2f31;
+        color: #2d2d2d;
       }
 
       &:hover{
-        background: #e6f0fa;
+        background: rgba(0, 136, 204, 0.3);
 
       }
     }
     .part{
-      margin-bottom: 10px;
-      color: #c3c3c3;
+      margin-bottom: 7px;
+      color: #2d2d2d;
       font-size: 14px;
     }
     h1{

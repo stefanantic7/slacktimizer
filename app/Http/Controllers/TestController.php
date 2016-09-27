@@ -8,17 +8,26 @@ class TestController extends Controller
 {
     public function index()
     {
-        $token = decrypt('0xEE3paZS4EucdIFpI2WaYxGrStdSbmcLsEtNSMROGM68GXepeUbudLpXkh8');
+        // Replace username
+        preg_match_all('(<.*?>)', $text, $matches);
 
-        dd($token);
-//        $request = new SlackRequest([
-//            'channel' => 'U1V5A1G15'
-//        ]);
-//
-//        // Get json from Slack
-//        $json = $request->getJSON('channels.history');
-//        dd($json);
-//        // TODO: Parse data and return.
-//        return $json;
+        foreach($matches[0] as $match)
+        {
+            $insert = $match;
+            $exploded = explode('|', $match);
+            if($exploded[0][1] == 'h')
+            {
+                $insert = '<a class="messageLink" href="' . substr($exploded[0], 1) . '">' . substr($exploded[0], 1) .
+                '</a>';
+            }
+            else if($exploded[0][1] == '@')
+            {
+                $insert = '<span class="messageUsername">' . substr($exploded[0], 1) . '</span>';
+            }
+
+            $text = str_replace($match, $insert, $text);
+        }
+
+        return $text;
     }
 }

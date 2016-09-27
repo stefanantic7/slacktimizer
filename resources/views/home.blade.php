@@ -47,7 +47,7 @@
                 @foreach($history as $message)
                     <div class="userName">&#64{{$message['username']}}</div>
                     <div class="messageTime">{{$message['timestamp']}}</div>
-                    <p class="message">{{$message['text']}}</p>
+                    <p class="message">{!!$message['text']!!}</p>
                 @endforeach
                 @if($page>1)
                     <div class="otherMessages"><a class="links" href="/{{$option}}/chat/{{$chat}}/{{$page-1}}">Show newest messages</a></div>

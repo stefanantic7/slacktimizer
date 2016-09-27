@@ -43,10 +43,12 @@
     #labelSendTo {
       font-size: 18px;
       font-weight: bold;
+      color: #2d2d2d;
     }
     .fullName {
       margin: 5px 0 10px 0;
       font-size: 13px;
+      color: #2d2d2d;
     }
   }
   .historyMessages{
@@ -63,15 +65,19 @@
     .userName{
       font-weight: bold;
       display: inline;
+      color: #2d2d2d;
     }
     .messageTime{
       display: inline;
-      color: #bfbfbf;
+      color: #2d2d2d;
     }
     .message{
       margin: 10px 0 20px 0;
       padding-right: 75px;
       word-wrap: break-word;
+      .messageUsername,.messageLink{
+        color: #1993d1;
+      }
     }
   }
 
@@ -116,23 +122,22 @@
   }
   .content{
     padding-left: 0;
-    .sideBarMask{
-      z-index: 1;
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 100%;
-      visibility: hidden;
-    }
+
     .userInfo{
       text-align: center;
       padding-left: 0;
-
+      .sideBarMask{
+        z-index: 1;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        visibility: hidden;
+      }
     }
     .historyMessages{
       width: 100%;
-
 
     }
 

@@ -7,7 +7,7 @@
             @foreach($channels as $channel )
                 <a class="links" href="/channels/chat/{{$channel->chat_id}}">
                     <div class="choiceWrapper">
-                        <span class="choiceName">{{$channel->name}} </span>
+                        <span class="choiceName">&#35{{$channel->name}} </span>
                     </div>
                 </a>
             @endforeach
@@ -15,7 +15,7 @@
             @foreach($otherChannels as $channel )
                 <a class="links" href="/channels/chat/{{$channel->chat_id}}">
                     <div class="choiceWrapper">
-                        <span class="choiceName">{{$channel->name}} </span>
+                        <span class="choiceName">&#35{{$channel->name}} </span>
                     </div>
                 </a>
             @endforeach

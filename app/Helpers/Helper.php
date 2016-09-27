@@ -31,7 +31,7 @@ abstract class Helper
             $history[] = [
                 'username' => (isset($message['user'])) ? $users[$message['user']] : "Bot",
                 'timestamp' => date('d-m-Y H:i', $message['ts']),
-                'text' => $message['text']
+                'text' => Helper::parseText($message['text'], $users)
             ];
         }
 
@@ -56,16 +56,54 @@ abstract class Helper
         return null;
     }
 
-//    /**
-//     * Get user if not bot.
-//     *
-//     * @param array $ims
-//     * @return string
-//     */
-//    private static function bot($users, $message)
-//    {
-//        if(isset())
-//
-//        return "";
-//    }
+    /**
+     * Prepare text for displaying to user.
+     *
+     * @param string $text
+     * @param array $users
+     * @return string $text
+     */
+    private static function parseText($text, $users)
+    {
+        if($text == "") return "Unrecognized message";
+
+        // Replace username
+        preg_match_all('(<.*?>)', $text, $matches);
+
+        foreach($matches[0] as $match)
+        {
+            $insert = $match;
+            $exploded = explode('|', $match);
+            if($exploded[0][1] == 'h')
+            {
+                $newString = Helper::escapeChars($exploded[0]);
+                $insert = '<a class="messageLink" href="' . substr($newString, 1) . '">' . substr($newString, 1) . '</a>';
+            }
+            else if($exploded[0][1] == '@')
+            {
+                $newString = Helper::escapeChars($exploded[0]);
+                $userId = substr($newString, 2);
+                $userName = $users[$userId];
+                $insert = '<span class="messageUsername">@' . $userName . '</span>';
+            }
+
+            $text = str_replace($match, $insert, $text);
+        }
+
+        return $text;
+    }
+
+    /**
+     * Escape closing char.
+     *
+     * @param $text
+     * @return string
+     */
+    private static function escapeChars($text)
+    {
+        if(substr($text, -1) == '>')
+            return substr($text, 0, -1);
+
+        return $text;
+    }
 }

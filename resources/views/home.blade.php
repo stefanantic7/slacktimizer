@@ -11,58 +11,44 @@
             </a>
         </div>
         <div class="section"><a href="/channels" class="links">CHANNELS <span class="plus">+</span></a></div>
-
-        {{--<select>--}}
-            {{--<option>1</option>--}}
-            {{--<option>2</option>--}}
-            {{--<option>3</option>--}}
-            {{--<option>4</option>--}}
-            {{--<option>5</option>--}}
-        {{--</select>--}}
         <div class="section"><a href="/ims" class="links">DIRECT MESSAGES <span class="plus">+</span></a></div>
-
     </div>
     <div class="content">
+        <div class="userInfo">
+            @if(empty($history))
+                <div class="welcome">Welcome to Slack optimizer</div>
+            @endif
+            <div class="sideBarMask" onclick="hideSideBar()"></div>
+            <span id="labelSendTo">{{$chatName}}</span>
+            @if(isset($fullName))
+                <p class="fullName">{{$fullName}}</p>
+            @endif
+            <a href="{{ url('/logout') }}" class="logout"
+                onclick="event.preventDefault();
+                 document.getElementById('logout-form').submit();">
+                Logout
+            </a>
+        </div>
 
-        <form method="post" action="{{url('/' . $chatId)}}">
-            {{csrf_field()}}
+        <div class="historyMessages">
+            @foreach($history as $message)
+                <div class="userName">&#64{{$message['username']}}</div>
+                <div class="messageTime">{{$message['timestamp']}}</div>
+                <p class="message">{!!$message['text']!!}</p>
+            @endforeach
+        </div>
 
-            <div class="userInfo">
-                @if(empty($history))
-                    <div class="welcome">Welcome to Slack optimizer</div>
-                @endif
-                <div class="sideBarMask" onclick="hideSideBar()"></div>
-                <span id="labelSendTo">{{$chatName}}</span>
-                @if(isset($fullName))
-                    <p class="fullName">{{$fullName}}</p>
-                @endif
-                <a href="{{ url('/logout') }}" class="logout"
-                    onclick="event.preventDefault();
-                     document.getElementById('logout-form').submit();">
-                    Logout
-                </a>
-            </div>
+        @if(!empty($history))
+            <form method="post" action="{{url('/' . $chatId)}}">
+                {{csrf_field()}}
 
-            <div class="historyMessages">
-
-                @foreach($history as $message)
-                    <div class="userName">&#64{{$message['username']}}</div>
-                    <div class="messageTime">{{$message['timestamp']}}</div>
-                    <p class="message">{{$message['text']}}</p>
-                @endforeach
-            </div>
-
-            @if(!empty($history))
                 <div class="sendWrapper">
                     <textarea name="message" rows="1" class="newMessage"></textarea>
                     <input type="submit" value="Send" class="sendMessage">
                 </div>
-            @endif
-        </form>
-
-
+            </form>
+        @endif
     </div>
-
 @endsection
 @section('customScript')
     <script>

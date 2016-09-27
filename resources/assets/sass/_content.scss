@@ -28,10 +28,12 @@
     #labelSendTo {
       font-size: 18px;
       font-weight: bold;
+      color: #2d2d2d;
     }
     .fullName {
       margin: 5px 0 10px 0;
       font-size: 13px;
+      color: #2d2d2d;
     }
   }
   .historyMessages{
@@ -43,14 +45,18 @@
     .userName{
       font-weight: bold;
       display: inline;
+      color: #2d2d2d;
     }
     .messageTime{
       display: inline;
-      color: #bfbfbf;
+      color: #2d2d2d;
     }
     .message{
       margin: 10px 0 20px 0;
       padding-right: 75px;
+      .messageUsername,.messageLink{
+        color: #1993d1;
+      }
     }
   }
 

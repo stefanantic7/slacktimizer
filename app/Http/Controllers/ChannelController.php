@@ -35,7 +35,7 @@ class ChannelController extends Controller
         // Initialize Slack request
         $request = new SlackRequest([
             'channel' => $chatId,
-            'count' => 10
+            'count' => 150
         ]);
 
         // Get json from Slack

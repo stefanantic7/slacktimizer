@@ -14,8 +14,6 @@
 <body>
 
     @if(Auth::check())
-
-
         <form id="logout-form" action="{{ url('/logout') }}" method="POST" >
             {{ csrf_field() }}
         </form>

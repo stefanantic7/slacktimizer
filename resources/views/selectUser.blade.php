@@ -7,7 +7,6 @@
             @foreach($ims as $im)
                 <a class="links" href="/ims/chat/{{$im->chat_id}}">
                     <div class="choiceWrapper">
-
                         <span class="choiceName">&#64{{$im->username}} </span>
                         @if($im->name != '')
                             <span>| {{$im->name}}</span>
@@ -19,7 +18,6 @@
             @foreach($otherIms as $im)
                 <a class="links" href="/ims/chat/{{$im->chat_id}}">
                     <div class="choiceWrapper">
-
                         <span class="choiceName">&#64{{$im->username}} </span>
                         @if($im->name != '')
                             <span>| {{$im->name}}</span>

@@ -25,11 +25,16 @@ class HomeController extends Controller
      */
     public function index()
     {
+
+
+        $chat='';
+        $page=1;
         $history = [];
         $chatName = null;
         $chatId = null;
+        $option='';
 
-        return view('home', compact('chatName', 'chatId', 'history'));
+        return view('home', compact('history', 'chatName', 'chatId', 'page', 'chat', 'option'));
     }
 
     /**

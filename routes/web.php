@@ -25,10 +25,12 @@ Route::post('/{chat}', 'HomeController@send');
 // Channels routes
 Route::get('/channels/get', 'ChannelController@get');
 Route::get('/channels/chat/{chat}', 'ChannelController@chat');
+Route::get('/channels/chat/{chat}/{page?}', 'ChannelController@pagination');
 
 // Messages routes
 Route::get('/ims', 'ImController@index');
-Route::get('/ims/chat/{chat}', 'ImController@chat');
+Route::get('/ims/chat/{chat}/', 'ImController@chat');
+Route::get('/ims/chat/{chat}/{page?}', 'ImController@pagination');
 Route::post('/ims/send', 'ImController@send');
 Route::get('/ims/get', 'ImController@get');
 

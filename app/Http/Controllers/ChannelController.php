@@ -28,38 +28,47 @@ class ChannelController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function chat(Request $request)
+    public function chat($chat)
     {
-        $chatId = $request->chat;
-
+        $page = 1;
+        $option='channels';
         // Initialize Slack request
         $request = new SlackRequest([
-            'channel' => $chatId,
-            'count' => 150
+            'channel' => $chat,
+            'count' => 50
         ]);
 
         // Get json from Slack
         $json = $request->getJSON('channels.history');
 
-        $history = collect(Helper::prepareImsHistory($json))->reverse();
+        $history = collect(Helper::prepareImsHistory($json));
+        session(['sessionHistory' => $history]);
 
-        $chatName = Channel::where('chat_id', $chatId)
+        $history=$history->slice(0,10);
+        $history = $history->reverse();
+        $chatName = Channel::where('chat_id', $chat)
                             ->where('user_id', Auth::user()->id)
                             ->first();
 
-        $channels = DB::table('channels')
-            ->where('user_id', Auth::user()->id)
-            ->where('is_member', true)
-            ->get();
-
-        $ims = DB::table('ims')
-            ->where('user_id', Auth::user()->id)
-            ->where('chat_id', '!=', null)
-            ->get();
 
         $chatName = '#' . $chatName->name;
 
-        return view('home', compact('channels', 'ims', 'history', 'chatName', 'chatId'));
+        return view('home', compact('history', 'chatName', 'chat', 'page', 'option'));
+    }
+    public function pagination($chat, $page=1)
+    {
+        $option = 'channels';
+        $chatName = Channel::where('chat_id', $chat)
+            ->where('user_id', Auth::user()->id)
+            ->first();
+
+
+        $chatName = '#' . $chatName->name;
+        $startAt = ($page - 1) * 10;
+        $history=session('sessionHistory');
+        $history=$history->slice($startAt,10);
+        $history = $history->reverse();
+        return view('home', compact('history', 'chatName', 'chat', 'page', 'option'));
     }
 
     /**

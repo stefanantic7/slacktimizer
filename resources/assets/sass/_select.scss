@@ -6,7 +6,7 @@
     display: inline-block;
     color: #2d2d2d;
     .choiceWrapper{
-      border-top: #9f9f9f solid 1px;
+      border-top: #ebebeb solid 1px;
       height: 40px;
       padding: 10px 0 0 3px;
       .choiceName{
@@ -21,6 +21,13 @@
     h5{
       margin-bottom: 7px;
       color: #2d2d2d;
+    .part{
+      margin-bottom: 10px;
+      color: #c3c3c3;
+      font-size: 14px;
+    }
+    h1{
+      margin-bottom: 15px;
     }
   }
 }

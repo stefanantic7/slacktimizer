@@ -10,15 +10,7 @@
                 <span class="mainUser">{{Auth::user()->name}}</span>
             </a>
         </div>
-        @if (count($errors) > 0)
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+
         <div class="section"><a href="/channels" class="links">CHANNELS <span class="plus">+</span></a></div>
         <div class="section"><a href="/groups" class="links">GROUPS<span class="plus">+</span></a></div>
         <div class="section"><a href="/ims" class="links">DIRECT MESSAGES <span class="plus">+</span></a></div>
@@ -29,12 +21,20 @@
         </a>
     </div>
     <div class="content" >
-        @if(empty($history))
+        @if(empty($history) && count($errors)===0)
             <div class="welcome">
                 <div class="firstLine">Welcome to Optimizer</div>
                 <div class="secondLine">New way to use Slack on slow connections</div>
             </div>
+        @elseif (count($errors) > 0)
+            <div class="welcome">
+
+                @foreach ($errors->all() as $error)
+                    <div class="firstLine error">{{ $error }}</div>
+                @endforeach
+            </div>
         @endif
+
         <div class="sideBarMask" onclick="hideSideBar()"></div>
         @if(!empty($history))
         <form method="post" action="{{url('/' . $chat)}}">
@@ -49,7 +49,7 @@
             </div>
 
             <div class="historyMessages">
-                @if($page<5)
+                @if($page!=5 && count($history)>=10)
                     <div class="otherMessages"><a class="links" href="/{{$option}}/chat/{{$chat}}/{{$page+1}}">Show older messages</a></div>
                 @endif
 

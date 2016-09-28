@@ -76,6 +76,7 @@ class ImController extends Controller
 
         $history=$history->slice($startAt,10);
         $history = $history->reverse();
+
         return view('home', compact('history', 'chatName', 'chat', 'fullName', 'page', 'option'));
     }
 

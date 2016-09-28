@@ -37,10 +37,12 @@ Route::get('/ims/get', 'ImController@get');
 // Groups routes
 Route::get('/groups', 'GroupController@index');
 Route::get('/groups/get', 'GroupController@get');
+Route::get('/groups/chat/{chat}', 'GroupController@chat');
 
 Route::get('/test', 'TestController@index');
 
 //All channels and users
 Route::get('/channels','HomeController@allChannels');
 Route::get('/ims','HomeController@allUsers');
+Route::get('/groups','HomeController@allGroups');
 

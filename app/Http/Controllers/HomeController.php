@@ -78,10 +78,10 @@ class HomeController extends Controller
     }
 
     /**
-     * All users.
-     *
-     * @return view
-     */
+ * All users.
+ *
+ * @return view
+ */
     public function allUsers()
     {
         $ims = DB::table('ims')
@@ -95,5 +95,19 @@ class HomeController extends Controller
             ->get();
 
         return view('selectUser',compact('ims', 'otherIms'));
+    }
+
+    /**
+     * All groups.
+     *
+     * @return view
+     */
+    public function allGroups()
+    {
+        $groups = DB::table('groups')
+            ->where('user_id', Auth::user()->id)
+            ->get();
+
+        return view('selectGroup',compact('groups'));
     }
 }

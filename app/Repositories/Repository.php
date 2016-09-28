@@ -105,14 +105,14 @@ abstract class Repository
             // Add new channels
             foreach($groups['groups'] as $groups)
             {
-                if()
-                {
-                    Group::create(['user_id' => Auth::user()->id,
-                        'chat_id' => $groups['id'],
-                        'name' => $groups['name'],
-                        'is_member' => $groups['is_member']]);
-
-                }
+//                if()
+//                {
+//                    Group::create(['user_id' => Auth::user()->id,
+//                        'chat_id' => $groups['id'],
+//                        'name' => $groups['name'],
+//                        'is_member' => $groups['is_member']]);
+//
+//                }
             }
 
             DB::commit();

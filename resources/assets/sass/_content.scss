@@ -122,19 +122,19 @@
   }
   .content{
     padding-left: 0;
-
+    .sideBarMask{
+      z-index: 1;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      visibility: hidden;
+    }
     .userInfo{
       text-align: center;
       padding-left: 0;
-      .sideBarMask{
-        z-index: 1;
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 100%;
-        visibility: hidden;
-      }
+
     }
     .historyMessages{
       width: 100%;
@@ -145,11 +145,11 @@
       padding-left: 10px;
       padding-right: 10px;
       .newMessage{
-        width: 85%;
+        width: 80%;
       }
       .sendMessage{
 
-        width: 15%;
+        width: 20%;
       }
     }
 

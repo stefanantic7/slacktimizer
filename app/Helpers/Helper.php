@@ -77,7 +77,9 @@ abstract class Helper
             if($exploded[0][1] == 'h')
             {
                 $newString = Helper::escapeChars($exploded[0]);
-                $insert = '<a class="messageLink" href="' . substr($newString, 1) . '">' . substr($newString, 1) . '</a>';
+                $insert = '<a target="_blank" class="messageLink" href="' . substr($newString, 1) . '">' . substr
+                    ($newString,
+                        1) . '</a>';
             }
             else if($exploded[0][1] == '@')
             {

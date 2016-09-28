@@ -25,7 +25,7 @@ class ChannelController extends Controller
     /**
      * Get channel history and redirect to home.
      *
-     * @param Request $request
+     * @param string $chat
      * @return Response
      */
     public function chat($chat)
@@ -50,11 +50,18 @@ class ChannelController extends Controller
                             ->where('user_id', Auth::user()->id)
                             ->first();
 
-
         $chatName = '#' . $chatName->name;
 
         return view('home', compact('history', 'chatName', 'chat', 'page', 'option'));
     }
+
+    /**
+     * Paginate channel history.
+     *
+     * @param $chat
+     * @param int $page
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function pagination($chat, $page=1)
     {
         $option = 'channels';
@@ -62,12 +69,12 @@ class ChannelController extends Controller
             ->where('user_id', Auth::user()->id)
             ->first();
 
-
         $chatName = '#' . $chatName->name;
         $startAt = ($page - 1) * 10;
         $history=session('sessionHistory');
         $history=$history->slice($startAt,10);
         $history = $history->reverse();
+
         return view('home', compact('history', 'chatName', 'chat', 'page', 'option'));
     }
 

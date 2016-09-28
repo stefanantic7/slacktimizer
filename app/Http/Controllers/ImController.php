@@ -25,7 +25,7 @@ class ImController extends Controller
     /**
      * Get chat history and redirect it to homepage.
      *
-     * @param Request $request
+     * @param string $chat
      * @return Response
      */
     public function chat($chat)
@@ -36,7 +36,6 @@ class ImController extends Controller
         $request = new SlackRequest([
             'channel' => $chat,
             'count' => 50,
-
         ]);
 
         // Get json from Slack
@@ -55,12 +54,21 @@ class ImController extends Controller
 
         return view('home', compact('history', 'chatName', 'chat', 'fullName', 'page', 'option' ));
     }
+
+    /**
+     * Paginate chat hisory.
+     *
+     * @param $chat
+     * @param int $page
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function pagination($chat, $page=1)
     {
         $option = 'ims';
         $user = Im::where('chat_id', $chat)
             ->where('user_id', Auth::user()->id)
             ->first();
+
         $chatName = '@' . $user->username;
         $fullName = $user->name;
         $startAt=($page - 1)*10;
@@ -69,6 +77,29 @@ class ImController extends Controller
         $history=$history->slice($startAt,10);
         $history = $history->reverse();
         return view('home', compact('history', 'chatName', 'chat', 'fullName', 'page', 'option'));
+    }
+
+    /**
+     * Send message to user first time.
+     *
+     * @param $slackId string
+     * @return Response
+     */
+    public function newChat($slackId)
+    {
+        // Initialize Slack request
+        $slackRequest = new SlackRequest([
+            'user' => $slackId
+        ]);
+
+        // Get json from Slack
+        $success = $slackRequest->getJSON('im.open');
+
+        if(isset($success['error']) && $success['error'] == 'user_disabled') return redirect('home');
+
+        Im::where('slack_user_id', $slackId)->update(['chat_id' => $success['channel']['id']]);
+
+        return redirect('ims/chat/' . $success['channel']['id']);
     }
 
     /**

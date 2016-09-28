@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "52bd880ab93be6dff2cd5a56f7b033f0",
-    "content-hash": "aa658d1aab6849c69696217b30994d13",
+    "hash": "620a85c5eb1df7113e24e56f6c83da23",
+    "content-hash": "25d528a63848e481afde2f5f46368585",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -1363,43 +1363,6 @@
             ],
             "description": "Easily add new or override built-in providers in Laravel Socialite.",
             "time": "2016-08-04 18:16:57"
-        },
-        {
-            "name": "socialiteproviders/slack",
-            "version": "v2.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/SocialiteProviders/Slack.git",
-                "reference": "491f9b41cff8f71caf8e8e0abba7efd18c86e3e8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/SocialiteProviders/Slack/zipball/491f9b41cff8f71caf8e8e0abba7efd18c86e3e8",
-                "reference": "491f9b41cff8f71caf8e8e0abba7efd18c86e3e8",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^5.6 || ^7.0",
-                "socialiteproviders/manager": "~2.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "SocialiteProviders\\Slack\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "DraperStudio",
-                    "email": "hello@draperstud.io"
-                }
-            ],
-            "description": "Slack OAuth2 Provider for Laravel Socialite",
-            "time": "2016-07-20 15:40:01"
         },
         {
             "name": "swiftmailer/swiftmailer",

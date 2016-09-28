@@ -23,5 +23,5 @@ class Group extends Model
      *
      * @var array
      */
-    protected $fillable = ['user_id', 'chat_id', 'name', 'is_member'];
+    protected $fillable = ['user_id', 'chat_id', 'name'];
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\SlackRequest;
 use App\Http\Requests;
+use App\Repositories\Repository;
 
 class GroupController extends Controller
 {
@@ -33,7 +34,6 @@ class GroupController extends Controller
         // Get json from Slack
         $json = $request->getJSON('groups.list');
 
-        dd($json);
         Repository::saveGroups($json);
     }
 }

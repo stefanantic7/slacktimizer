@@ -69,6 +69,7 @@ class LoginController extends Controller
 
         app('App\Http\Controllers\ChannelController')->get();
         app('App\Http\Controllers\ImController')->get();
+        app('App\Http\Controllers\GroupController')->get();
 
         return redirect('/');
     }

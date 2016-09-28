@@ -90,7 +90,7 @@ abstract class Repository
      *
      * @param array $groups
      */
-    public function saveGroups($groups)
+    public static function saveGroups($groups)
     {
         // Begin transaction
         DB::beginTransaction();
@@ -103,15 +103,13 @@ abstract class Repository
                 ->delete();
 
             // Add new channels
-            foreach($groups['groups'] as $groups)
+            foreach($groups['groups'] as $group)
             {
-                if()
+                if($group['is_mpim'] == false)
                 {
                     Group::create(['user_id' => Auth::user()->id,
-                        'chat_id' => $groups['id'],
-                        'name' => $groups['name'],
-                        'is_member' => $groups['is_member']]);
-
+                        'chat_id' => $group['id'],
+                        'name' => $group['name']]);
                 }
             }
 

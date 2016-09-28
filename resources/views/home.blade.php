@@ -26,7 +26,7 @@
                 <div class="firstLine">Welcome to Optimizer</div>
                 <div class="secondLine">New way to use Slack on slow connections</div>
             </div>
-        @else (count($errors) > 0)
+        @elseif (count($errors) > 0)
             <div class="welcome">
 
                 @foreach ($errors->all() as $error)
@@ -49,7 +49,7 @@
             </div>
 
             <div class="historyMessages">
-                @if($page<5)
+                @if($page!=5 && count($history)>=10)
                     <div class="otherMessages"><a class="links" href="/{{$option}}/chat/{{$chat}}/{{$page+1}}">Show older messages</a></div>
                 @endif
 

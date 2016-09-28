@@ -17,7 +17,7 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\EventListener',
         ],
         'SocialiteProviders\Manager\SocialiteWasCalled' => [
-            'SocialiteProviders\Slack\SlackExtendSocialite@handle'
+            'App\Providers\Slack\SlackExtendSocialite@handle'
         ],
     ];
 

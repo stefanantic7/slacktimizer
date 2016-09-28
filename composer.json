@@ -1,14 +1,13 @@
 {
     "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "description": "Slack optimization.",
+    "keywords": ["slack", "optimization", "optimize"],
     "license": "MIT",
     "type": "project",
     "require": {
         "php": ">=5.6.4",
         "laravel/framework": "5.3.*",
-        "socialiteproviders/slack": "^2.0",
-        "laravel/socialite": "^2.0"
+        "socialiteproviders/slack": "^2.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -39,7 +38,9 @@
         ],
         "post-install-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postInstall",
-            "php artisan optimize"
+            "php artisan optimize",
+            "touch database/database.sqlite",
+            "php artisan migrate"
         ],
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",

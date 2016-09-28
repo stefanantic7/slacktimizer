@@ -22,12 +22,14 @@
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
-
+                                <br/>
                                 @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                    <span class="error">
+                                        {{ $errors->first('email') }}
                                     </span>
+
                                 @endif
+                                <br/>
                             </div>
 
 
@@ -37,7 +39,9 @@
                                 </button>
 
                     </form>
-                    </div>
+
+
+    </div>
 </div>
 
 @endsection

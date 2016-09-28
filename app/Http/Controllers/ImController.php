@@ -35,8 +35,7 @@ class ImController extends Controller
         // Initialize Slack request
         $request = new SlackRequest([
             'channel' => $chat,
-            'count' => 50,
-
+            'count' => 50
         ]);
 
         // Get json from Slack

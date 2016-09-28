@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Channel;
 use App\Im;
+use App\Group;
 use App\Helpers\Helper;
 use Auth;
 use DB;
@@ -74,6 +75,44 @@ abstract class Repository
                             'chat_id' => Helper::parseChatId($ims['ims'], $user['id']),
                             'username' => $user['name'],
                             'name' => $user['profile']['real_name']]);
+            }
+
+            DB::commit();
+        } catch (Exception $e)
+        {
+            // Return error
+            DB::rollback();
+        }
+    }
+
+    /**
+     * Fill groups table with user groups.
+     *
+     * @param array $groups
+     */
+    public function saveGroups($groups)
+    {
+        // Begin transaction
+        DB::beginTransaction();
+
+        try
+        {
+            // Remove old channels
+            DB::table('groups')
+                ->where('user_id', '=', Auth::user()->id)
+                ->delete();
+
+            // Add new channels
+            foreach($groups['groups'] as $groups)
+            {
+                if()
+                {
+                    Group::create(['user_id' => Auth::user()->id,
+                        'chat_id' => $groups['id'],
+                        'name' => $groups['name'],
+                        'is_member' => $groups['is_member']]);
+
+                }
             }
 
             DB::commit();

@@ -10,8 +10,17 @@
                 <span class="mainUser">{{Auth::user()->name}}</span>
             </a>
         </div>
+        @if (count($errors) > 0)
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <div class="section"><a href="/channels" class="links">CHANNELS <span class="plus">+</span></a></div>
-
+        <div class="section"><a href="/groups" class="links">GROUPS<span class="plus">+</span></a></div>
         <div class="section"><a href="/ims" class="links">DIRECT MESSAGES <span class="plus">+</span></a></div>
         <a href="{{ url('/logout') }}" class="logout links"
            onclick="event.preventDefault();

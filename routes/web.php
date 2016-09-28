@@ -28,12 +28,15 @@ Route::get('/channels/chat/{chat}', 'ChannelController@chat');
 Route::get('/channels/chat/{chat}/{page?}', 'ChannelController@pagination');
 
 // Messages routes
-Route::get('/ims', 'ImController@index');
 Route::get('/ims/chat/{chat}/', 'ImController@chat');
 Route::get('/ims/new/{slackId}', 'ImController@newChat');
 Route::get('/ims/chat/{chat}/{page?}', 'ImController@pagination');
 Route::post('/ims/send', 'ImController@send');
 Route::get('/ims/get', 'ImController@get');
+
+// Groups routes
+Route::get('/groups', 'GroupController@index');
+Route::get('/groups/get', 'GroupController@get');
 
 Route::get('/test', 'TestController@index');
 

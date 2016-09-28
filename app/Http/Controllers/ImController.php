@@ -95,7 +95,8 @@ class ImController extends Controller
         // Get json from Slack
         $success = $slackRequest->getJSON('im.open');
 
-        if(isset($success['error']) && $success['error'] == 'user_disabled') return redirect('home');
+        if(isset($success['error']) && $success['error'] == 'user_disabled')
+            return redirect('/')->withErrors('User disabled');
 
         Im::where('slack_user_id', $slackId)->update(['chat_id' => $success['channel']['id']]);
 

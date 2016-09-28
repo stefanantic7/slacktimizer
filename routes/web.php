@@ -38,6 +38,7 @@ Route::get('/ims/get', 'ImController@get');
 Route::get('/groups', 'GroupController@index');
 Route::get('/groups/get', 'GroupController@get');
 Route::get('/groups/chat/{chat}', 'GroupController@chat');
+Route::get('/groups/chat/{chat}/{page?}', 'GroupController@pagination');
 
 Route::get('/test', 'TestController@index');
 

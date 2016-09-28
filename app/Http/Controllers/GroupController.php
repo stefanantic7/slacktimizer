@@ -55,6 +55,31 @@ class GroupController extends Controller
     }
 
     /**
+     * Paginate chat hisory.
+     *
+     * @param $chat
+     * @param int $page
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function pagination($chat, $page=1)
+    {
+        $option = 'groups';
+        $chatName = Group::where('chat_id', $chat)
+            ->where('user_id', Auth::user()->id)
+            ->first();
+
+        $chatName = '#' . $chatName->name;
+
+        $startAt=($page - 1)*10;
+        $history=session('sessionHistory');
+
+        $history=$history->slice($startAt,10);
+        $history = $history->reverse();
+
+        return view('home', compact('history', 'chatName', 'chat', 'page', 'option'));
+    }
+
+    /**
      * Get channels from Slack for logged user
      * and store them to database.
      *

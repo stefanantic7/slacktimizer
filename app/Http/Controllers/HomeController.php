@@ -25,8 +25,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-
-
         $chat='';
         $page=1;
         $history = [];
@@ -70,6 +68,7 @@ class HomeController extends Controller
             ->where('user_id', Auth::user()->id)
             ->where('is_member', true)
             ->get();
+
         $otherChannels = DB::table('channels')
             ->where('user_id', Auth::user()->id)
             ->where('is_member', false)

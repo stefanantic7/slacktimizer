@@ -3,31 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SlackRequest;
+use App\Im;
 
 class TestController extends Controller
 {
     public function index()
     {
-        // Replace username
-        preg_match_all('(<.*?>)', $text, $matches);
+        // Initialize Slack request
+        $slackRequest = new SlackRequest([
+            'user' => 'U0FBXG4LD'
+        ]);
 
-        foreach($matches[0] as $match)
-        {
-            $insert = $match;
-            $exploded = explode('|', $match);
-            if($exploded[0][1] == 'h')
-            {
-                $insert = '<a class="messageLink" href="' . substr($exploded[0], 1) . '">' . substr($exploded[0], 1) .
-                '</a>';
-            }
-            else if($exploded[0][1] == '@')
-            {
-                $insert = '<span class="messageUsername">' . substr($exploded[0], 1) . '</span>';
-            }
+        // Get json from Slack
+        $success = $slackRequest->getJSON('im.open');
+        $user = Im::where('slack_user_id', 'U0FBXG4LD')->update(['chat_id' => $success['channel']['id']]);
 
-            $text = str_replace($match, $insert, $text);
-        }
+        $find = Im::where('slack_user_id', 'U0FBXG4LD')->first();
 
-        return $text;
+        return redirect('ims/chat/' . $success['channel']['id']);
     }
 }

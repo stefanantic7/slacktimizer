@@ -62,7 +62,7 @@ class LoginController extends Controller
         $user = User::find(Auth::user()->id);
 
         $user->slack_token = $slackUser->token;
-        $user->team_name = $slackUser->user['team']['name'];
+        $user->team_name = $slackUser->team_name;
         $user->save();
 
         Auth::login($user);

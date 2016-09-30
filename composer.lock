@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "42370dfc8660c23a188f26b4bcf7b4fd",
-    "content-hash": "25d528a63848e481afde2f5f46368585",
+    "hash": "a39ba724d958dfc635e2fe64bfcfbf58",
+    "content-hash": "94f6cb5c0c6ea59e0e4df0836074fae5",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -479,16 +479,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.3.11",
+            "version": "v5.3.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "ca48001b95a0543fb39fcd7219de960bbc03eaa5"
+                "reference": "309fe4cdb2039c4a46d0454a9c56d5dc5faa304a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/ca48001b95a0543fb39fcd7219de960bbc03eaa5",
-                "reference": "ca48001b95a0543fb39fcd7219de960bbc03eaa5",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/309fe4cdb2039c4a46d0454a9c56d5dc5faa304a",
+                "reference": "309fe4cdb2039c4a46d0454a9c56d5dc5faa304a",
                 "shasum": ""
             },
             "require": {
@@ -603,7 +603,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2016-09-28 02:15:37"
+            "time": "2016-09-29 13:46:41"
         },
         {
             "name": "laravel/socialite",
@@ -3824,7 +3824,9 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.6.4"
+        "php": ">=5.6.4",
+        "ext-sqlite3": "*",
+        "ext-pdo_sqlite": "*"
     },
     "platform-dev": []
 }

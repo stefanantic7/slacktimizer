@@ -16,7 +16,7 @@ class Provider extends AbstractProvider implements ProviderInterface
     /**
      * {@inheritdoc}
      */
-    protected $scopes = ['chat:write:user', 'im:history', 'im:read', 'channels:read', 'channels:history',
+    protected $scopes = ['team:read', 'chat:write:user', 'im:history', 'im:read', 'channels:read', 'channels:history',
         'users:read', 'users.profile:read', 'im:write', 'groups:read', 'groups:history'];
 
     /**
@@ -50,7 +50,8 @@ class Provider extends AbstractProvider implements ProviderInterface
     protected function getUserByToken($token)
     {
         $response = $this->getHttpClient()->get(
-            'https://slack.com/api/users.identity?token='.$token
+//            'https://slack.com/api/users.identity?token='.$token
+            'https://slack.com/api/team.info?token='.$token
         );
 
         return json_decode($response->getBody()->getContents(), true);
@@ -62,11 +63,7 @@ class Provider extends AbstractProvider implements ProviderInterface
     protected function mapUserToObject(array $user)
     {
         return (new User())->setRaw($user)->map([
-            'id' => $user['user']['id'],
-            'name' => $user['user']['name'],
-            'email' => $user['user']['email'],
-            'avatar' => $user['user']['image_192'],
-            'organization_id' => $user['team']['id'],
+            'team_name' => $user['team']['name'],
         ]);
     }
 }

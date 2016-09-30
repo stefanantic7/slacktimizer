@@ -1,6 +1,6 @@
 .sideBar {
   z-index: 2;
-  position: absolute;
+  position: fixed;
   width: 250px;
   height: 100%;
   background-color: #30292f;
@@ -115,7 +115,8 @@
       height: 100%;
       width: 90%;
       padding: 7px;
-      line-height: 19px; }
+      line-height: 19px;
+      resize: none; }
     .content .sendWrapper .sendMessage {
       float: left;
       height: 100%;

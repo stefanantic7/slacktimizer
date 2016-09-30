@@ -4,7 +4,7 @@
 <div class="container">
 
     <div class="wrapper">
-        <h1>Register</h1><br/>
+        <h1>Register to Slacktimizer</h1><br/>
         <form role="form" method="POST" action="{{ url('/register') }}">
             {{ csrf_field() }}
             <label for="name" >Name</label>
